@@ -84,7 +84,7 @@ function getGreenFrogWord(word) {
 }
 
 function problem4(word) {
-  var answer;
+  var answer = getGreenFrogWord(word);
   return answer;
 }
 
