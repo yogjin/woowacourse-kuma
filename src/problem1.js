@@ -5,6 +5,13 @@ function getSumOfEachDigitOfPage(page) {
   return sum;
 }
 
+function getProductOfEachDigitOfPage(page) {
+  let product = 1;
+  [...page.toString()].forEach((digit) => (product *= parseInt(digit)));
+
+  return product;
+}
+
 function problem1(pobi, crong) {
   var answer;
   return answer;
