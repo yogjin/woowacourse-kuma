@@ -54,6 +54,21 @@ const uppercases = [
   'Y',
   'Z',
 ];
+
+function getGreenFrogLetter(letter) {
+  let greenFrogLetter;
+  let indexOfLetter;
+  if (letter === letter.toUpperCase()) {
+    indexOfLetter = uppercases.indexOf(letter);
+    greenFrogLetter = uppercases[uppercases.length - indexOfLetter - 1];
+  } else {
+    indexOfLetter = lowercases.indexOf(letter);
+    greenFrogLetter = lowercases[lowercases.length - indexOfLetter - 1];
+  }
+
+  return greenFrogLetter;
+}
+
 function problem4(word) {
   var answer;
   return answer;
