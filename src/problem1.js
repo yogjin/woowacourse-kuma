@@ -45,6 +45,10 @@ function getGameResult(pobiScore, crongScore) {
 function problem1(pobi, crong) {
   var answer;
 
+  const pobiScore = getScore(pobi);
+  const crongScore = getScore(crong);
+
+  answer = getGameResult(pobiScore, crongScore);
   return answer;
 }
 
