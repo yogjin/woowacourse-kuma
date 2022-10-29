@@ -56,6 +56,12 @@ const uppercases = [
 ];
 
 function getGreenFrogLetter(letter) {
+  const isLetterAlpabet =
+    uppercases.includes(letter) || lowercases.includes(letter);
+  if (!isLetterAlpabet) {
+    return letter;
+  }
+
   let greenFrogLetter;
   let indexOfLetter;
   if (letter === letter.toUpperCase()) {
