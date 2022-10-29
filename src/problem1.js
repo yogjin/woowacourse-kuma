@@ -12,6 +12,10 @@ function getProductOfEachDigitOfPage(page) {
   return product;
 }
 
+function getLargerOfTwoNumbers(x, y) {
+  return Math.max(x, y);
+}
+
 function problem1(pobi, crong) {
   var answer;
   return answer;
