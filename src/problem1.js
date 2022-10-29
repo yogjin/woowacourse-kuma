@@ -16,6 +16,20 @@ function getLargerOfTwoNumbers(x, y) {
   return Math.max(x, y);
 }
 
+function getGameResult(pobiScore, crongScore) {
+  let result = -1;
+
+  if (pobiScore > crongScore) {
+    result = 1;
+  } else if (crongScore > pobiScore) {
+    result = 2;
+  } else {
+    result = 0;
+  }
+
+  return result;
+}
+
 function problem1(pobi, crong) {
   var answer;
   return answer;
