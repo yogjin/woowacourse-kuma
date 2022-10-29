@@ -16,6 +16,18 @@ function getLargerOfTwoNumbers(x, y) {
   return Math.max(x, y);
 }
 
+function getScore(pages) {
+  let sum = 0;
+  let product = 0;
+
+  pages.forEach((page) => {
+    sum = getSumOfEachDigitOfPage(page);
+    product = getProductOfEachDigitOfPage(page);
+  });
+
+  return getLargerOfTwoNumbers(sum, product);
+}
+
 function getGameResult(pobiScore, crongScore) {
   let result = -1;
 
@@ -32,6 +44,7 @@ function getGameResult(pobiScore, crongScore) {
 
 function problem1(pobi, crong) {
   var answer;
+
   return answer;
 }
 
