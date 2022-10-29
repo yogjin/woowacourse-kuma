@@ -69,6 +69,14 @@ function getGreenFrogLetter(letter) {
   return greenFrogLetter;
 }
 
+function getGreenFrogWord(word) {
+  const frogWord = [...word]
+    .map((letter) => getGreenFrogLetter(letter))
+    .join('');
+
+  return frogWord;
+}
+
 function problem4(word) {
   var answer;
   return answer;
