@@ -18,6 +18,30 @@ function problem6(forms) {
       }
     });
   });
+
+  let duplicatedCrewEmails = new Set();
+
+  forms.forEach((form) => {
+    const [email, nickname] = form;
+    let isDuplicated = false;
+
+    for (let i = 0; i < nickname.length - 1; i++) {
+      const nicknamePiece = nickname.slice(i, i + 2);
+
+      if (nicknamePiecesCounts[nicknamePiece] >= 2) {
+        isDuplicated = true;
+        break;
+      }
+    }
+
+    if (isDuplicated) {
+      duplicatedCrewEmails.add(email);
+    }
+  });
+
+  let answer = [...duplicatedCrewEmails].sort();
+
+  return answer;
 }
 
 module.exports = problem6;
