@@ -16,7 +16,7 @@ function problem7(user, friends, visitors) {
   });
 
   const friendRecommendationScores = {};
-  const userFriends = allUserFriendsList[user];
+  const userFriends = allUserFriendsList[user] || [];
 
   for (const [id, friends] of Object.entries(allUserFriendsList)) {
     if (id === user || userFriends.includes(id)) {
