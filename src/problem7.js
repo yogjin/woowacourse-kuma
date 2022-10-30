@@ -19,7 +19,7 @@ function problem7(user, friends, visitors) {
   const userFriends = allUserFriendsList[user];
 
   for (const [id, friends] of Object.entries(allUserFriendsList)) {
-    if (id === user) {
+    if (id === user || userFriends.includes(id)) {
       continue;
     }
 
