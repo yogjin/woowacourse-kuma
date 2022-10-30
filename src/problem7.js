@@ -43,6 +43,27 @@ function problem7(user, friends, visitors) {
       }
     }
   });
+
+  const sortedFriendRecommendationScoresArray = Object.entries(
+    friendRecommendationScores
+  ).sort((id_score_a, id_score_b) => {
+    const [id_a, score_a] = id_score_a;
+    const [id_b, score_b] = id_score_b;
+
+    if (score_a > score_b) {
+      return -1;
+    } else if (score_a < score_b) {
+      return 1;
+    } else {
+      if (id_a < id_b) {
+        return -1;
+      } else if (id_a > id_b) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  });
 }
 
 module.exports = problem7;
