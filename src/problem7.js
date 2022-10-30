@@ -64,6 +64,12 @@ function problem7(user, friends, visitors) {
       }
     }
   });
+
+  const answer = sortedFriendRecommendationScoresArray
+    .map((id_score) => id_score[0])
+    .slice(0, 5);
+
+  return answer;
 }
 
 module.exports = problem7;
