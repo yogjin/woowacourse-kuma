@@ -1,35 +1,61 @@
-function problem2(cryptogram) {
-  let decipheredCryptogram = cryptogram;
+function sortStringArrayByDescendingOrder(stringArray) {
+  return [...stringArray].sort((a, b) => b.length - a.length);
+}
 
-  while (decipheredCryptogram.length > 0) {
-    let previousCharacter = '';
-    let duplicateCharacters = '';
-    const duplicateCharactersList = [];
-    for (let i = 0; i < decipheredCryptogram.length; i++) {
-      const currentCharacter = decipheredCryptogram[i];
+function getDuplicateCharactersList(cryptogram) {
+  let previousCharacter = '';
+  let duplicateCharacters = '';
+  let duplicateCharactersList = [];
 
-      if (previousCharacter === currentCharacter) {
-        duplicateCharacters += currentCharacter;
-        duplicateCharactersList.push(duplicateCharacters);
-      } else {
-        duplicateCharacters = currentCharacter;
-      }
-      previousCharacter = currentCharacter;
+  for (let i = 0; i < cryptogram.length; i++) {
+    const currentCharacter = cryptogram[i];
+
+    if (previousCharacter === currentCharacter) {
+      duplicateCharacters += currentCharacter;
+      duplicateCharactersList.push(duplicateCharacters);
+    } else {
+      duplicateCharacters = currentCharacter;
     }
+    previousCharacter = currentCharacter;
+  }
 
-    if (duplicateCharactersList.length === 0) {
+  duplicateCharactersList = sortStringArrayByDescendingOrder(
+    duplicateCharactersList
+  );
+
+  return duplicateCharactersList;
+}
+
+function isEmpty(array) {
+  return !array.length;
+}
+
+function removeDuplicateCharacters(cryptogram, duplicateCharactersList) {
+  duplicateCharactersList.forEach(
+    (duplicateCharacters) =>
+      (cryptogram = cryptogram.replace(duplicateCharacters, ''))
+  );
+
+  return cryptogram;
+}
+
+function decipherCryptogram(cryptogram) {
+  while (cryptogram.length > 0) {
+    const duplicateCharactersList = getDuplicateCharactersList(cryptogram);
+
+    if (isEmpty(duplicateCharactersList)) {
       break;
     }
 
-    duplicateCharactersList.sort((a, b) => b.length - a.length);
-    duplicateCharactersList.forEach(
-      (duplicateCharacters) =>
-        (decipheredCryptogram = decipheredCryptogram.replace(
-          duplicateCharacters,
-          ''
-        ))
-    );
+    cryptogram = removeDuplicateCharacters(cryptogram, duplicateCharactersList);
   }
+
+  return cryptogram;
+}
+
+function problem2(cryptogram) {
+  const decipheredCryptogram = decipherCryptogram(cryptogram);
+
   return decipheredCryptogram;
 }
 
