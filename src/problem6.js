@@ -1,4 +1,4 @@
-function problem6(forms) {
+function getNicknamePiecesCounts(forms) {
   const nicknamePiecesCounts = {};
 
   forms.forEach((form) => {
@@ -19,7 +19,11 @@ function problem6(forms) {
     });
   });
 
-  let duplicatedCrewEmails = new Set();
+  return nicknamePiecesCounts;
+}
+
+function getDuplicatedCrewEmails(forms, nicknamePiecesCounts) {
+  const duplicatedCrewEmails = new Set();
 
   forms.forEach((form) => {
     const [email, nickname] = form;
@@ -39,7 +43,17 @@ function problem6(forms) {
     }
   });
 
-  let answer = [...duplicatedCrewEmails].sort();
+  return [...duplicatedCrewEmails];
+}
+
+function problem6(forms) {
+  const nicknamePiecesCounts = getNicknamePiecesCounts(forms);
+  const duplicatedCrewEmails = getDuplicatedCrewEmails(
+    forms,
+    nicknamePiecesCounts
+  );
+
+  const answer = duplicatedCrewEmails.sort();
 
   return answer;
 }
