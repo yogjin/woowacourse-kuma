@@ -1,24 +1,28 @@
-function problem7(user, friends, visitors) {
-  const allUserFriendsList = {};
+function getAllIdFriendsList(friends) {
+  const allIdFriendsList = {};
 
   friends.forEach((friend) => {
     const [id_a, id_b] = friend;
-    if (!allUserFriendsList.hasOwnProperty(id_a)) {
-      allUserFriendsList[id_a] = [id_b];
+    if (!allIdFriendsList.hasOwnProperty(id_a)) {
+      allIdFriendsList[id_a] = [id_b];
     } else {
-      allUserFriendsList[id_a].push(id_b);
+      allIdFriendsList[id_a].push(id_b);
     }
-    if (!allUserFriendsList.hasOwnProperty(id_b)) {
-      allUserFriendsList[id_b] = [id_a];
+    if (!allIdFriendsList.hasOwnProperty(id_b)) {
+      allIdFriendsList[id_b] = [id_a];
     } else {
-      allUserFriendsList[id_b].push(id_a);
+      allIdFriendsList[id_b].push(id_a);
     }
   });
 
-  const friendRecommendationScores = {};
-  const userFriends = allUserFriendsList[user] || [];
+  return allIdFriendsList;
+}
 
-  for (const [id, friends] of Object.entries(allUserFriendsList)) {
+function getFriendRecommendationScores(user, allIdFriendsList, visitors) {
+  const friendRecommendationScores = {};
+  const userFriends = allIdFriendsList[user] || [];
+
+  for (const [id, friends] of Object.entries(allIdFriendsList)) {
     if (id === user || userFriends.includes(id)) {
       continue;
     }
@@ -44,6 +48,10 @@ function problem7(user, friends, visitors) {
     }
   });
 
+  return friendRecommendationScores;
+}
+
+function getSortedFriendRecommendationScoresArray(friendRecommendationScores) {
   const sortedFriendRecommendationScoresArray = Object.entries(
     friendRecommendationScores
   ).sort((id_score_a, id_score_b) => {
@@ -65,9 +73,32 @@ function problem7(user, friends, visitors) {
     }
   });
 
-  const answer = sortedFriendRecommendationScoresArray
+  return sortedFriendRecommendationScoresArray;
+}
+
+function getTopFiveRecommendationFriendIds(
+  sortedFriendRecommendationScoresArray
+) {
+  const topFiveRecommendationFriendIds = sortedFriendRecommendationScoresArray
     .map((id_score) => id_score[0])
     .slice(0, 5);
+
+  return topFiveRecommendationFriendIds;
+}
+
+function problem7(user, friends, visitors) {
+  const allIdFriendsList = getAllIdFriendsList(friends);
+  const friendRecommendationScores = getFriendRecommendationScores(
+    user,
+    allIdFriendsList,
+    visitors
+  );
+  const sortedFriendRecommendationScoresArray =
+    getSortedFriendRecommendationScoresArray(friendRecommendationScores);
+
+  const answer = getTopFiveRecommendationFriendIds(
+    sortedFriendRecommendationScoresArray
+  );
 
   return answer;
 }
