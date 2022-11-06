@@ -6,4 +6,8 @@ const isThreeDigitNumber = (userInputNumber) => {
   return userInputNumber.length === 3;
 };
 
-module.exports = { isAllDigitbetweenOneAndNine, isThreeDigitNumber };
+const isEachDigitUnique = (userInputNumber) => {
+  return userInputNumber.length === new Set(userInputNumber).size;
+};
+
+module.exports = { isAllDigitbetweenOneAndNine, isThreeDigitNumber, isEachDigitUnique };
