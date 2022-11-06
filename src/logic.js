@@ -19,4 +19,11 @@ const getBallAndStrikeCounts = (computerNumber, userInputNumber) => {
   return [ballCount, strikeCount];
 };
 
-module.exports = { getComputerNumber, getBallAndStrikeCounts };
+// 낫싱 여부 판단
+const isNothing = (ballAndStrikeCounts) => {
+  const [ballCount, strikeCount] = ballAndStrikeCounts;
+
+  return ballCount === 0 && strikeCount === 0;
+};
+
+module.exports = { getComputerNumber, getBallAndStrikeCounts, isNothing };
