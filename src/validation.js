@@ -10,4 +10,13 @@ const isEachDigitUnique = (userInputNumber) => {
   return userInputNumber.length === new Set(userInputNumber).size;
 };
 
-module.exports = { isAllDigitbetweenOneAndNine, isThreeDigitNumber, isEachDigitUnique };
+const isDigitOneOrTwo = (userInputNumber) => {
+  if (userInputNumber.length !== 1) {
+    return false;
+  }
+  const userInputDigit = userInputNumber[0];
+
+  return userInputDigit === 1 || userInputDigit === 2;
+};
+
+module.exports = { isAllDigitbetweenOneAndNine, isThreeDigitNumber, isEachDigitUnique, isDigitOneOrTwo };
