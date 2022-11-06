@@ -39,6 +39,10 @@ const threeDigitNumberValidationMessage = () => {
   Console.print(`3자리의 수를 입력해 주세요.`);
 };
 
+const eachDigitIsUniqueValidationMessage = () => {
+  Console.print(`각 자릿수는 서로 다른 숫자로 입력해 주세요.`);
+};
+
 module.exports = {
   gameStartMessage,
   numberInputRequestMessage,
@@ -46,4 +50,5 @@ module.exports = {
   oneOrTwoValidationMessage,
   allDigitIsbetweenOneAndNineValidationMessage,
   threeDigitNumberValidationMessage,
+  eachDigitIsUniqueValidationMessage,
 };
