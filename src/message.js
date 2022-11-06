@@ -43,6 +43,10 @@ const eachDigitIsUniqueValidationMessage = () => {
   Console.print(`각 자릿수는 서로 다른 숫자로 입력해 주세요.`);
 };
 
+const gameTerminationMessage = () => {
+  Console.print(`게임이 종료됩니다.`);
+};
+
 module.exports = {
   gameStartMessage,
   numberInputRequestMessage,
@@ -51,4 +55,5 @@ module.exports = {
   allDigitIsbetweenOneAndNineValidationMessage,
   threeDigitNumberValidationMessage,
   eachDigitIsUniqueValidationMessage,
+  gameTerminationMessage,
 };
