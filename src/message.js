@@ -27,4 +27,8 @@ const resultMessage = (ballAndStrikeCounts) => {
   }
 };
 
-module.exports = { gameStartMessage, numberInputRequestMessage, resultMessage };
+const oneOrTwoValidationMessage = () => {
+  Console.print(`1과 2 중 하나로 입력해 주세요.`);
+};
+
+module.exports = { gameStartMessage, numberInputRequestMessage, resultMessage, oneOrTwoValidationMessage };
