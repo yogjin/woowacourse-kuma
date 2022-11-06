@@ -31,4 +31,8 @@ const oneOrTwoValidationMessage = () => {
   Console.print(`1과 2 중 하나로 입력해 주세요.`);
 };
 
-module.exports = { gameStartMessage, numberInputRequestMessage, resultMessage, oneOrTwoValidationMessage };
+const allDigitIsbetweenOneAndNineValidationMessage = () => {
+  Console.print(`각 자릿수는 1에서 9사이의 숫자로 입력해 주세요.`);
+};
+
+module.exports = { gameStartMessage, numberInputRequestMessage, resultMessage, oneOrTwoValidationMessage, allDigitIsbetweenOneAndNineValidationMessage };
