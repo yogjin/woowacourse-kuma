@@ -35,4 +35,15 @@ const allDigitIsbetweenOneAndNineValidationMessage = () => {
   Console.print(`각 자릿수는 1에서 9사이의 숫자로 입력해 주세요.`);
 };
 
-module.exports = { gameStartMessage, numberInputRequestMessage, resultMessage, oneOrTwoValidationMessage, allDigitIsbetweenOneAndNineValidationMessage };
+const threeDigitNumberValidationMessage = () => {
+  Console.print(`3자리의 수를 입력해 주세요.`);
+};
+
+module.exports = {
+  gameStartMessage,
+  numberInputRequestMessage,
+  resultMessage,
+  oneOrTwoValidationMessage,
+  allDigitIsbetweenOneAndNineValidationMessage,
+  threeDigitNumberValidationMessage,
+};
