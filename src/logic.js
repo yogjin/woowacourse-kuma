@@ -1,7 +1,13 @@
 const { Random } = require('@woowacourse/mission-utils');
 
 const getComputerNumber = () => {
-  return Random.pickUniqueNumbersInRange(1, 9, 3);
+  const computerNumber = [];
+
+  for (let i = 0; i < 3; i++) {
+    computerNumber.push(Random.pickNumberInRange(1, 9));
+  }
+
+  return computerNumber;
 };
 
 const getBallAndStrikeCounts = (computerNumber, userInputNumber) => {
