@@ -21,7 +21,15 @@ class Game {
       isClear = resultMessage(ballAndStrikeCounts);
       if (isClear) {
         const isRestart = await restartMessage();
-        if (isRestart) {
+
+        try {
+          validateRestartInput(isRestart);
+        } catch (errorMessage) {
+          errorMessage();
+          return;
+        }
+
+        if (isRestart === 1) {
           isClear = false;
           this.computerNumber = getComputerNumber();
         }

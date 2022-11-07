@@ -2,6 +2,7 @@ const {
   allDigitIsbetweenOneAndNineValidationMessage,
   eachDigitIsUniqueValidationMessage,
   threeDigitNumberValidationMessage,
+  oneOrTwoValidationMessage,
 } = require('./message');
 
 const isAllDigitbetweenOneAndNine = (userInputNumber) => {
@@ -16,11 +17,11 @@ const isEachDigitUnique = (userInputNumber) => {
   return userInputNumber.length === new Set(userInputNumber).size;
 };
 
-const isDigitOneOrTwo = (userInputNumber) => {
-  if (userInputNumber.length !== 1) {
+const isDigitOneOrTwo = (userInput) => {
+  if (userInput.toString().length !== 1) {
     return false;
   }
-  const userInputDigit = userInputNumber[0];
+  const userInputDigit = userInput;
 
   return userInputDigit === 1 || userInputDigit === 2;
 };
@@ -37,4 +38,10 @@ const validateNumberInput = (userInputNumber) => {
   }
 };
 
-module.exports = { isAllDigitbetweenOneAndNine, isThreeDigitNumber, isEachDigitUnique, isDigitOneOrTwo, validateNumberInput };
+const validateRestartInput = (userInputDigit) => {
+  if (!isDigitOneOrTwo(userInputDigit)) {
+    throw oneOrTwoValidationMessage;
+  }
+};
+
+module.exports = { isAllDigitbetweenOneAndNine, isThreeDigitNumber, isEachDigitUnique, isDigitOneOrTwo, validateNumberInput, validateRestartInput };
