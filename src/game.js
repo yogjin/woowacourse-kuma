@@ -11,6 +11,11 @@ class Game {
     let isClear = false;
     do {
       const userInputNumber = await numberInputRequestMessage();
+      try {
+        validateNumberInput(userInputNumber);
+      } catch (errorMessage) {
+        errorMessage();
+      }
       const ballAndStrikeCounts = getBallAndStrikeCounts(this.computerNumber, userInputNumber);
 
       isClear = resultMessage(ballAndStrikeCounts);
