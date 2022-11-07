@@ -26,9 +26,13 @@ const resultMessage = (ballAndStrikeCounts) => {
     Console.print(`${strikeCounts}스트라이크`);
   } else if (strikeCounts === 0 && ballCounts === 0) {
     Console.print(`낫싱`);
-  } else if (strikeCounts === 3) {
-    Console.print(`3개의 숫자를 모두 맞히셨습니다! 게임 종료`);
   }
+  if (strikeCounts === 3) {
+    Console.print(`3개의 숫자를 모두 맞히셨습니다! 게임 종료`);
+    return true;
+  }
+  return false;
+};
 
 const restartMessage = () => {
   return new Promise((resolve) => {
