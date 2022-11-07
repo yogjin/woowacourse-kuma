@@ -1,13 +1,18 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { getUserInputNumberFromUserInput } = require('./utils');
 
 const gameStartMessage = () => {
   Console.print('숫자 야구 게임을 시작합니다.');
 };
 
 const numberInputRequestMessage = () => {
-  Console.readLine('숫자를 입력해주세요 :', (userInputNumber) => {
-    resultMessage(userInputNumber);
-  });
+  let userInputNumber;
+  return new Promise((resolve) =>
+    Console.readLine('숫자를 입력해주세요 : ', (userInputNumberString) => {
+      userInputNumber = getUserInputNumberFromUserInput(userInputNumberString);
+      resolve(userInputNumber);
+    })
+  );
 };
 
 const resultMessage = (ballAndStrikeCounts) => {
@@ -61,6 +66,7 @@ module.exports = {
   gameStartMessage,
   numberInputRequestMessage,
   resultMessage,
+  restartMessage,
   oneOrTwoValidationMessage,
   allDigitIsbetweenOneAndNineValidationMessage,
   threeDigitNumberValidationMessage,
