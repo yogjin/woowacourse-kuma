@@ -15,6 +15,8 @@ class Game {
         validateNumberInput(userInputNumber);
       } catch (errorMessage) {
         errorMessage();
+        gameTerminationMessage();
+        return;
       }
       const ballAndStrikeCounts = getBallAndStrikeCounts(this.computerNumber, userInputNumber);
 
@@ -26,6 +28,7 @@ class Game {
           validateRestartInput(isRestart);
         } catch (errorMessage) {
           errorMessage();
+          gameTerminationMessage();
           return;
         }
 
