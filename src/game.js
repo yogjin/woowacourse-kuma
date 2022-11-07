@@ -1,5 +1,5 @@
 const { getComputerNumber, getBallAndStrikeCounts } = require('./logic');
-const { gameStartMessage, numberInputRequestMessage, resultMessage, restartMessage } = require('./message');
+const { gameStartMessage, numberInputRequestMessage, resultMessage, restartMessage, gameTerminationMessage } = require('./message');
 
 class Game {
   constructor() {
@@ -22,6 +22,7 @@ class Game {
         }
       }
     } while (!isClear);
+    gameTerminationMessage();
   }
 }
 
