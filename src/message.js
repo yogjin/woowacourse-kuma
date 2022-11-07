@@ -64,6 +64,7 @@ const eachDigitIsUniqueValidationMessage = () => {
 
 const gameTerminationMessage = () => {
   Console.print(`게임이 종료됩니다.`);
+  Console.close();
 };
 
 module.exports = {
