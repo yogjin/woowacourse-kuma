@@ -1,13 +1,27 @@
-const { getComputerNumber } = require('./logic');
-const { gameStartMessage } = require('./message');
+const { getComputerNumber, getBallAndStrikeCounts } = require('./logic');
+const { gameStartMessage, numberInputRequestMessage, resultMessage, restartMessage } = require('./message');
 
 class Game {
   constructor() {
     this.computerNumber = getComputerNumber();
   }
 
-  start() {
+  async start() {
     gameStartMessage();
+    let isClear = false;
+    do {
+      const userInputNumber = await numberInputRequestMessage();
+      const ballAndStrikeCounts = getBallAndStrikeCounts(this.computerNumber, userInputNumber);
+
+      isClear = resultMessage(ballAndStrikeCounts);
+      if (isClear) {
+        const isRestart = await restartMessage();
+        if (isRestart) {
+          isClear = false;
+          this.computerNumber = getComputerNumber();
+        }
+      }
+    } while (!isClear);
   }
 }
 
