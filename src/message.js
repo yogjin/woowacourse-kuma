@@ -23,7 +23,7 @@ const resultMessage = (ballAndStrikeCounts) => {
   } else if (ballCounts > 0 && strikeCounts === 0) {
     Console.print(`${ballCounts}볼`);
   } else if (strikeCounts > 0 && ballCounts === 0) {
-    Console.print(`${ballCounts}스트라이크`);
+    Console.print(`${strikeCounts}스트라이크`);
   } else if (strikeCounts === 0 && ballCounts === 0) {
     Console.print(`낫싱`);
   } else if (strikeCounts === 3) {
