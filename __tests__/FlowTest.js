@@ -68,6 +68,38 @@ describe('게임 반복', () => {
   const app = new App();
   app.play();
 
+  describe('입력이 유효하지 않은 경우 예외처리', () => {
+    it('3자리의 수가 아닌 경우', () => {
+      const input = ['1234'];
+
+      mockQuestions(input);
+
+      expect(() => {
+        app.play();
+      }).toThrow();
+    });
+
+    it('각 자릿수가 1에서 9사이의 숫자가 아닌 경우', () => {
+      const input = ['012'];
+
+      mockQuestions(input);
+
+      expect(() => {
+        app.play();
+      }).toThrow();
+    });
+
+    it('각 자릿수가 각각 서로 다른 숫자가 아닌 경우', () => {
+      const input = ['112'];
+
+      mockQuestions(input);
+
+      expect(() => {
+        app.play();
+      }).toThrow();
+    });
+  });
+
   it('입력한 숫자에 대한 결과 출력', () => {
     const logSpy = getLogSpy();
     const ballAndStrikeCounts = [
