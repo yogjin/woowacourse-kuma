@@ -46,9 +46,9 @@ class Game {
 
     if (userInputDigit === 1) {
       this.start();
+    } else {
+      gameTerminationMessage();
     }
-
-    gameTerminationMessage();
   }
 
   setComputerNumber() {
