@@ -3,8 +3,12 @@ const { Random } = require('@woowacourse/mission-utils');
 const getComputerNumber = () => {
   const computerNumber = [];
 
-  for (let i = 0; i < 3; i++) {
-    computerNumber.push(Random.pickNumberInRange(1, 9));
+  while (computerNumber.length < 3) {
+    const number = Random.pickNumberInRange(1, 9);
+
+    if (!computerNumber.includes(number)) {
+      computerNumber.push(number);
+    }
   }
 
   return computerNumber;
