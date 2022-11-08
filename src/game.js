@@ -1,4 +1,4 @@
-const { getComputerNumber, getBallAndStrikeCounts, isClaer } = require('./logic');
+const { getComputerNumber, getBallAndStrikeCounts, isClear } = require('./logic');
 const { gameStartMessage, numberInputRequestMessage, resultMessage, restartMessage, gameTerminationMessage } = require('./message');
 const { validateNumberInput, validateRestartInput } = require('./validation');
 const { Console } = require('@woowacourse/mission-utils');
@@ -23,14 +23,14 @@ class Game {
       const ballAndStrikeCounts = getBallAndStrikeCounts(this.computerNumber, userinputNumber);
       resultMessage(ballAndStrikeCounts);
 
-      this.determineRestart(isClaer(ballAndStrikeCounts));
+      this.determineRestart(isClear(ballAndStrikeCounts));
 
       this.play();
     });
   }
 
-  determineRestart(isClear) {
-    if (isClear) {
+  determineRestart(isGameClear) {
+    if (isGameClear) {
       this.restart();
     }
   }

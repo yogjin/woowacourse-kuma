@@ -35,10 +35,10 @@ const isNothing = (ballAndStrikeCounts) => {
   return ballCount === 0 && strikeCount === 0;
 };
 
-const isClaer = (ballAndStrikeCounts) => {
+const isClear = (ballAndStrikeCounts) => {
   const [, strikeCount] = ballAndStrikeCounts;
 
   return strikeCount === 3;
 };
 
-module.exports = { getComputerNumber, getBallAndStrikeCounts, isNothing, isClaer };
+module.exports = { getComputerNumber, getBallAndStrikeCounts, isNothing, isClear };
