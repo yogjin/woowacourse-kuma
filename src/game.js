@@ -1,45 +1,42 @@
-const { getComputerNumber, getBallAndStrikeCounts } = require('./logic');
+const { getComputerNumber, getBallAndStrikeCounts, isClaer } = require('./logic');
 const { gameStartMessage, numberInputRequestMessage, resultMessage, restartMessage, gameTerminationMessage } = require('./message');
 const { validateNumberInput, validateRestartInput } = require('./validation');
+const { Console } = require('@woowacourse/mission-utils');
+const { getUserInputNumberFromUserInput, getUserInputDigitFromUserInput } = require('./utils');
 
 class Game {
   constructor() {
-    this.computerNumber = getComputerNumber();
+    this.computerNumber = [];
   }
 
-  async start() {
+  start() {
+    this.computerNumber = getComputerNumber();
     gameStartMessage();
-    let isClear = false;
-    do {
-      const userInputNumber = await numberInputRequestMessage();
-      try {
-        validateNumberInput(userInputNumber);
-      } catch (errorMessage) {
-        errorMessage();
-        gameTerminationMessage();
-        return;
+    this.play();
+  }
+
+  play() {
+    Console.readLine('숫자를 입력해주세요 : ', (input) => {
+      const userinputNumber = getUserInputNumberFromUserInput(input);
+      validateNumberInput(userinputNumber);
+      const ballAndStrikeCounts = getBallAndStrikeCounts(this.computerNumber, userinputNumber);
+      resultMessage(ballAndStrikeCounts);
+
+      if (isClaer(ballAndStrikeCounts)) {
+        Console.readLine(`게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.`, (userInput) => {
+          const userInputDigit = getUserInputDigitFromUserInput(userInput);
+
+          validateRestartInput(userInputDigit);
+
+          if (userInputDigit === 1) {
+            this.start();
+          } else {
+            gameTerminationMessage();
+          }
+        });
       }
-      const ballAndStrikeCounts = getBallAndStrikeCounts(this.computerNumber, userInputNumber);
-
-      isClear = resultMessage(ballAndStrikeCounts);
-      if (isClear) {
-        const isRestart = await restartMessage();
-
-        try {
-          validateRestartInput(isRestart);
-        } catch (errorMessage) {
-          errorMessage();
-          gameTerminationMessage();
-          return;
-        }
-
-        if (isRestart === 1) {
-          isClear = false;
-          this.computerNumber = getComputerNumber();
-        }
-      }
-    } while (!isClear);
-    gameTerminationMessage();
+      this.play();
+    });
   }
 }
 
