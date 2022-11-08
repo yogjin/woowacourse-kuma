@@ -10,7 +10,7 @@ class Game {
   }
 
   start() {
-    this.computerNumber = getComputerNumber();
+    this.setComputerNumber();
     gameStartMessage();
     this.play();
   }
@@ -49,6 +49,10 @@ class Game {
     }
 
     gameTerminationMessage();
+  }
+
+  setComputerNumber() {
+    this.computerNumber = getComputerNumber();
   }
 }
 
