@@ -2,6 +2,7 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const Game = require('../src/game');
 const App = require('../src/App');
 const { getComputerNumber } = require('../src/logic');
+const { gameStartMessage } = require('../src/message');
 
 const mockQuestions = (answers) => {
   Console.readLine = jest.fn();
@@ -53,3 +54,11 @@ describe('게임 시작', () => {
     // 각 자릿 수가 각각 서로 다른 수인가?
     expect(computerNumber).toHaveLength(new Set(computerNumber).size);
   });
+
+  it('시작을 알리는 텍스트', () => {
+    const text = `숫자 야구 게임을 시작합니다.`;
+    gameStartMessage();
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(text));
+  });
+});
