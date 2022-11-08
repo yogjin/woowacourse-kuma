@@ -3,6 +3,7 @@ const Game = require('../src/game');
 const App = require('../src/App');
 const { getComputerNumber } = require('../src/logic');
 const { gameStartMessage, resultMessage } = require('../src/message');
+const { validateRestartInput } = require('../src/validation');
 
 const mockQuestions = (answers) => {
   Console.readLine = jest.fn();
@@ -114,6 +115,18 @@ describe('게임 반복', () => {
 
     messages.forEach((output) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
+    });
+  });
+
+  describe('재시작 입력이 유효하지 않은 경우 예외처리', () => {
+    it('1과 2 중 하나의 수가 아닌 경우', () => {
+      const inputs = ['a', ' ', '1 ', '2 ', 3, 11];
+
+      inputs.forEach((input) =>
+        expect(() => {
+          validateRestartInput(input);
+        }).toThrow()
+      );
     });
   });
 });
