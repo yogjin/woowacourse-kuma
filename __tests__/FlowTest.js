@@ -129,4 +129,38 @@ describe('게임 반복', () => {
       );
     });
   });
+
+  describe('분기', () => {
+    it('1: 게임 처음부터 다시 시작', () => {
+      const randoms = [1, 3, 5, 5, 8, 9];
+      const answers = ['135', '1', '125'];
+      const logSpy = getLogSpy();
+      const messages = ['3스트라이크', '게임 종료', '1볼'];
+
+      mockRandoms(randoms);
+      mockQuestions(answers);
+
+      app.play();
+
+      messages.forEach((output) => {
+        expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
+      });
+    });
+
+    it('2: 게임 종료', () => {
+      const randoms = [1, 3, 5, 5, 8, 9];
+      const answers = ['135', '2'];
+      const logSpy = getLogSpy();
+      const messages = ['3스트라이크', '게임이 종료됩니다.'];
+
+      mockRandoms(randoms);
+      mockQuestions(answers);
+
+      app.play();
+
+      messages.forEach((output) => {
+        expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
+      });
+    });
+  });
 });
