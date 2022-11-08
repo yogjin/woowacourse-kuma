@@ -1,5 +1,5 @@
 const { getComputerNumber, getBallAndStrikeCounts, isClear } = require('./logic');
-const { gameStartMessage, numberInputRequestMessage, resultMessage, restartMessage, gameTerminationMessage } = require('./message');
+const { gameStartMessage, resultMessage, gameTerminationMessage } = require('./message');
 const { validateNumberInput, validateRestartInput } = require('./validation');
 const { Console } = require('@woowacourse/mission-utils');
 const { getUserInputNumberFromUserInput, getUserInputDigitFromUserInput } = require('./utils');
