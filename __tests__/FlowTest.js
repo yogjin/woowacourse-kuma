@@ -2,7 +2,7 @@ const { Console, Random } = require('@woowacourse/mission-utils');
 const Game = require('../src/game');
 const App = require('../src/App');
 const { getComputerNumber } = require('../src/logic');
-const { gameStartMessage } = require('../src/message');
+const { gameStartMessage, resultMessage } = require('../src/message');
 
 const mockQuestions = (answers) => {
   Console.readLine = jest.fn();
@@ -60,5 +60,28 @@ describe('게임 시작', () => {
     gameStartMessage();
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(text));
+  });
+});
+
+describe('게임 반복', () => {
+  const readLinelogSpy = getReadLineLogSpy();
+  const app = new App();
+  app.play();
+
+  it('입력한 숫자에 대한 결과 출력', () => {
+    const logSpy = getLogSpy();
+    const ballAndStrikeCounts = [
+      [1, 1],
+      [1, 0],
+      [0, 1],
+      [0, 0],
+    ];
+    const messages = ['1볼 1스트라이크', '1볼', '1스트라이크', '낫싱'];
+
+    ballAndStrikeCounts.forEach((ballAndStrikeCount) => resultMessage(ballAndStrikeCount));
+
+    messages.forEach((output) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
+    });
   });
 });
