@@ -19,24 +19,36 @@ class Game {
     Console.readLine('숫자를 입력해주세요 : ', (input) => {
       const userinputNumber = getUserInputNumberFromUserInput(input);
       validateNumberInput(userinputNumber);
+
       const ballAndStrikeCounts = getBallAndStrikeCounts(this.computerNumber, userinputNumber);
       resultMessage(ballAndStrikeCounts);
 
-      if (isClaer(ballAndStrikeCounts)) {
-        Console.readLine(`게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.`, (userInput) => {
-          const userInputDigit = getUserInputDigitFromUserInput(userInput);
+      this.determineRestart(isClaer(ballAndStrikeCounts));
 
-          validateRestartInput(userInputDigit);
-
-          if (userInputDigit === 1) {
-            this.start();
-          } else {
-            gameTerminationMessage();
-          }
-        });
-      }
       this.play();
     });
+  }
+
+  determineRestart(isClear) {
+    if (isClear) {
+      this.restart();
+    }
+  }
+
+  restart() {
+    Console.readLine(`게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.`, (userInput) => this.restartProcess(userInput));
+  }
+
+  restartProcess(userInput) {
+    const userInputDigit = getUserInputDigitFromUserInput(userInput);
+
+    validateRestartInput(userInputDigit);
+
+    if (userInputDigit === 1) {
+      this.start();
+    }
+
+    gameTerminationMessage();
   }
 }
 
