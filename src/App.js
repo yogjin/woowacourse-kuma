@@ -17,10 +17,16 @@ class App {
       generatedLottos.forEach((generatedLotto) => Utils.print(generatedLotto));
 
       Utils.readLine(`당첨 번호를 입력해 주세요.`, (input) => {
-        const lottoWinningNumbers = input.split(',').map((number) => parseInt(number, 10));
+        const lottoWinningNumbers = input.split(',').map((number) => {
+          const lottoNumber = parseInt(number, 10);
+          if (!(lottoNumber >= 1 && lottoNumber <= 45)) throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
+
+          return lottoNumber;
+        });
 
         Utils.readLine(`보너스 번호를 입력해 주세요.`, (input) => {
           const bonusNumber = parseInt(input, 10);
+          if (!(bonusNumber >= 1 && bonusNumber <= 45)) throw new Error('[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.');
         });
       });
     });
