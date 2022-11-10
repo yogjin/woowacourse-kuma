@@ -8,6 +8,10 @@ class Utils {
   static print(text) {
     Console.print(text);
   }
+
+  static getAscending(numbers) {
+    return numbers.sort((a, b) => a - b);
+  }
 }
 
 module.exports = Utils;
