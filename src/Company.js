@@ -17,6 +17,10 @@ class Company {
   getGeneratedLottos() {
     return this.generatedLottos;
   }
+
+  getGeneratedLottosCount() {
+    return this.generatedLottos.length;
+  }
 }
 
 module.exports = Company;

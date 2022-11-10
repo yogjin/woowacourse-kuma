@@ -9,7 +9,11 @@ class App {
       if (amount % 1000 !== 0) throw new Error('[ERROR] 1,000원 단위로 입력해주세요.');
 
       company.generateLotto(amount);
+
+      const generatedLottosCount = company.getGeneratedLottosCount();
       const generatedLottos = company.getGeneratedLottos();
+
+      Utils.print(`${generatedLottosCount}개를 구매했습니다.`);
       generatedLottos.forEach((generatedLotto) => Utils.print(generatedLotto));
     });
   }
