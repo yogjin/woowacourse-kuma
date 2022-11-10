@@ -15,6 +15,10 @@ class App {
 
       Utils.print(`${generatedLottosCount}개를 구매했습니다.`);
       generatedLottos.forEach((generatedLotto) => Utils.print(generatedLotto));
+
+      Utils.readLine(`당첨 번호를 입력해 주세요.`, (input) => {
+        const lottoWinningNumbers = input.split(',').map((number) => parseInt(number, 10));
+      });
     });
   }
 }
