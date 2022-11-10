@@ -14,7 +14,7 @@ class Lotto {
     }
   }
 
-  generate() {
+  static generate() {
     const numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
 
     return numbers;

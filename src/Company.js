@@ -3,17 +3,19 @@ const Lotto = require('./Lotto');
 class Company {
   generatedLottos = [];
 
-  constructor(lotto) {
-    this.lotto = lotto;
-  }
+  constructor() {}
 
   generateLotto(amount) {
     const number = amount / 1000;
 
     for (let i = 0; i < number; i++) {
-      const lotto = this.lotto.generate();
+      const lotto = Lotto.generate();
       this.generatedLottos.push(lotto);
     }
+  }
+
+  getGeneratedLottos() {
+    return this.generatedLottos;
   }
 }
 
