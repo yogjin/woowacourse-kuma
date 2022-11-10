@@ -18,6 +18,10 @@ class App {
 
       Utils.readLine(`당첨 번호를 입력해 주세요.`, (input) => {
         const lottoWinningNumbers = input.split(',').map((number) => parseInt(number, 10));
+
+        Utils.readLine(`보너스 번호를 입력해 주세요.`, (input) => {
+          const bonusNumber = parseInt(input, 10);
+        });
       });
     });
   }
