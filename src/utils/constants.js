@@ -17,4 +17,12 @@ const ERROR = Object.freeze({
 
 const LOTTO_PRICE = 1000;
 
-module.exports = { RESULT, ERROR, LOTTO_PRICE };
+const PRIZE_MONEY = Object.freeze({
+  FIRST: 2000000000,
+  SECOND: 30000000,
+  THIRD: 1500000,
+  FOURTH: 50000,
+  FIFTH: 5000,
+});
+
+module.exports = { RESULT, ERROR, LOTTO_PRICE, PRIZE_MONEY };

@@ -1,3 +1,5 @@
+const { PRIZE_MONEY } = require('./constants');
+
 const getAscending = (numbers) => {
   return numbers.sort((a, b) => a - b);
 };
@@ -7,10 +9,12 @@ const getRateOfReturn = (earnedAmount, purchasedAmount) => {
 };
 
 const getEarnedAmount = (statistic) => {
-  let earnedAmount = 0;
-  const prizeMoneys = [2000000000, 30000000, 1500000, 50000, 5000];
-
-  prizeMoneys.forEach((prizeMoney, index) => (earnedAmount += prizeMoney * statistic[index]));
+  const earnedAmount =
+    PRIZE_MONEY.FIRST * statistic.FIRST +
+    PRIZE_MONEY.SECOND * statistic.SECOND +
+    PRIZE_MONEY.THIRD * statistic.THIRD +
+    PRIZE_MONEY.FOURTH * statistic.FOURTH +
+    PRIZE_MONEY.FIFTH * statistic.FIFTH;
 
   return earnedAmount;
 };

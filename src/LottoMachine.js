@@ -24,25 +24,32 @@ class LottoMachine {
   }
 
   getStatistic(lotto, bonusNumber) {
-    const statistic = [0, 0, 0, 0, 0];
+    const statistic = {
+      FIRST: 0,
+      SECOND: 0,
+      THIRD: 0,
+      FOURTH: 0,
+      FIFTH: 0,
+    };
+
     for (const generatedLotto of this.generatedLottos) {
       const result = lotto.getResult(generatedLotto, bonusNumber);
 
       switch (result) {
         case RESULT.FIRST:
-          statistic[0] += 1;
+          statistic.FIRST += 1;
           continue;
         case RESULT.SECOND:
-          statistic[1] += 1;
+          statistic.SECOND += 1;
           continue;
         case RESULT.THIRD:
-          statistic[2] += 1;
+          statistic.THIRD += 1;
           continue;
         case RESULT.FOURTH:
-          statistic[3] += 1;
+          statistic.FOURTH += 1;
           continue;
         case RESULT.FIFTH:
-          statistic[4] += 1;
+          statistic.FIFTH += 1;
           continue;
       }
     }

@@ -19,11 +19,11 @@ const printGeneratedLottos = (generatedLottos) => {
 const printStatistic = (statistic) => {
   print(`당첨 통계`);
   print(`---`);
-  print(`3개 일치 (5,000원) - ${statistic[4]}개`);
-  print(`4개 일치 (50,000원) - ${statistic[3]}개`);
-  print(`5개 일치 (1,500,000원) - ${statistic[2]}개`);
-  print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${statistic[1]}개`);
-  print(`6개 일치 (2,000,000,000원) - ${statistic[0]}개`);
+  print(`3개 일치 (5,000원) - ${statistic.FIFTH}개`);
+  print(`4개 일치 (50,000원) - ${statistic.FOURTH}개`);
+  print(`5개 일치 (1,500,000원) - ${statistic.THIRD}개`);
+  print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${statistic.SECOND}개`);
+  print(`6개 일치 (2,000,000,000원) - ${statistic.FIRST}개`);
 };
 
 const printRateOfReturn = (purchasedAmount, statistic) => {
