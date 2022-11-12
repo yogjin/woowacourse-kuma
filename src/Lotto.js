@@ -1,5 +1,5 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { RESULT } = require('./constants');
+const { RESULT, ERROR } = require('./constants');
 const Utils = require('./Utils');
 
 class Lotto {
@@ -12,9 +12,9 @@ class Lotto {
 
   validate(numbers) {
     if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(ERROR.notSixNumbers);
     } else if (numbers.length !== new Set(numbers).size) {
-      throw new Error('[ERROR] 로또 번호에 중복된 숫자가 있으면 안됩니다.');
+      throw new Error(ERROR.duplicatedNumbers);
     }
   }
 
