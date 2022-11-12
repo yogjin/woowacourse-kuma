@@ -15,7 +15,9 @@ class App {
       const generatedLottos = company.getGeneratedLottos();
 
       Utils.print(`${generatedLottosCount}개를 구매했습니다.`);
-      generatedLottos.forEach((generatedLotto) => Utils.print(generatedLotto));
+      generatedLottos.forEach((generatedLotto) => {
+        Utils.print(`[${generatedLotto[0]}, ${generatedLotto[1]}, ${generatedLotto[2]}, ${generatedLotto[3]}, ${generatedLotto[4]}, ${generatedLotto[5]}]`);
+      });
 
       Utils.readLine(`당첨 번호를 입력해 주세요.`, (input) => {
         const lottoWinningNumbers = input.split(',').map((number) => {
