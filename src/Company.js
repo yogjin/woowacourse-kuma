@@ -58,6 +58,10 @@ class Company {
 
     return money;
   }
+
+  getRateOfReturn(purchaseAmount, sumOfPrizeMoney) {
+    return ((sumOfPrizeMoney / purchaseAmount) * 100).toFixed(1);
+  }
 }
 
 module.exports = Company;
