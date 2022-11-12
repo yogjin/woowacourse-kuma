@@ -1,5 +1,5 @@
 const Company = require('./Company');
-const { ERROR } = require('./utils/constants');
+const { ERROR, LOTTO_PRICE } = require('./utils/constants');
 const Lotto = require('./Lotto');
 const { readLine, print } = require('./utils/console');
 
@@ -8,7 +8,7 @@ class App {
     const company = new Company();
 
     readLine(`구입금액을 입력해 주세요.`, (amount) => {
-      if (amount % 1000 !== 0) throw new Error(ERROR.notThousandWonUnit);
+      if (amount % LOTTO_PRICE !== 0) throw new Error(ERROR.notThousandWonUnit);
 
       company.generateLotto(amount);
 

@@ -15,4 +15,6 @@ const ERROR = Object.freeze({
   bonusNumberExistInLottoWinnningNumbers: '[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.',
 });
 
-module.exports = { RESULT, ERROR };
+const LOTTO_PRICE = 1000;
+
+module.exports = { RESULT, ERROR, LOTTO_PRICE };
