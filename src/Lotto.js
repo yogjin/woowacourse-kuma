@@ -1,6 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { RESULT, ERROR } = require('./constants');
-const Utils = require('./Utils');
+const { getAscending } = require('./utils/common');
+const { RESULT, ERROR } = require('./utils/constants');
 
 class Lotto {
   #numbers;
@@ -20,7 +20,7 @@ class Lotto {
 
   static generate() {
     let numbers = Random.pickUniqueNumbersInRange(1, 45, 6);
-    numbers = Utils.getAscending(numbers);
+    numbers = getAscending(numbers);
 
     return numbers;
   }

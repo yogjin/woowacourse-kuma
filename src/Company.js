@@ -1,4 +1,4 @@
-const { RESULT } = require('./constants');
+const { RESULT } = require('./utils/constants');
 const Lotto = require('./Lotto');
 
 class Company {
