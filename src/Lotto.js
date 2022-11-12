@@ -1,5 +1,7 @@
 const { Random } = require('@woowacourse/mission-utils');
+const { RESULT } = require('./constants');
 const Utils = require('./Utils');
+
 class Lotto {
   #numbers;
 
@@ -19,6 +21,28 @@ class Lotto {
     numbers = Utils.getAscending(numbers);
 
     return numbers;
+  }
+
+  getResult(userNumbers, bonusNumber) {
+    let matchCount = 0;
+
+    userNumbers.forEach((userNumber) => {
+      if (this.#numbers.includes(userNumber)) matchCount += 1;
+    });
+
+    switch (matchCount) {
+      case 6:
+        return RESULT.FIRST;
+      case 5:
+        if (this.#numbers.includes(bonusNumber)) return RESULT.SECOND;
+        return RESULT.THIRD;
+      case 4:
+        return RESULT.FOURTH;
+      case 3:
+        return RESULT.FIFTH;
+      default:
+        return RESULT.LAST;
+    }
   }
 }
 
