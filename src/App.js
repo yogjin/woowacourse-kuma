@@ -32,17 +32,17 @@ class App {
           if (!(bonusNumber >= 1 && bonusNumber <= 45)) throw new Error('[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.');
           if (lottoWinningNumbers.includes(bonusNumber)) throw new Error('[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.');
 
-          const statisitcs = company.getStatistics(lotto, bonusNumber);
+          const statistic = company.getStatistic(lotto, bonusNumber);
 
           Utils.print(`당첨 통계`);
           Utils.print(`---`);
-          Utils.print(`3개 일치 (5,000원) - ${statisitcs[4]}개`);
-          Utils.print(`4개 일치 (50,000원) - ${statisitcs[3]}개`);
-          Utils.print(`5개 일치 (1,500,000원) - ${statisitcs[2]}개`);
-          Utils.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${statisitcs[1]}개`);
-          Utils.print(`6개 일치 (2,000,000,000원) - ${statisitcs[0]}개`);
+          Utils.print(`3개 일치 (5,000원) - ${statistic[4]}개`);
+          Utils.print(`4개 일치 (50,000원) - ${statistic[3]}개`);
+          Utils.print(`5개 일치 (1,500,000원) - ${statistic[2]}개`);
+          Utils.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${statistic[1]}개`);
+          Utils.print(`6개 일치 (2,000,000,000원) - ${statistic[0]}개`);
 
-          const sumOfPrizeMoney = company.getMoney(statisitcs);
+          const sumOfPrizeMoney = company.getMoney(statistic);
           Utils.print(`총 수익률은 ${company.getRateOfReturn(amount, sumOfPrizeMoney)}%입니다.`);
         });
       });

@@ -23,31 +23,31 @@ class Company {
     return this.generatedLottos.length;
   }
 
-  getStatistics(lotto, bonusNumber) {
-    const statisitcs = [0, 0, 0, 0, 0];
+  getStatistic(lotto, bonusNumber) {
+    const statistic = [0, 0, 0, 0, 0];
     for (const generatedLotto of this.generatedLottos) {
       const result = lotto.getResult(generatedLotto, bonusNumber);
 
       switch (result) {
         case RESULT.FIRST:
-          statisitcs[0] += 1;
+          statistic[0] += 1;
           continue;
         case RESULT.SECOND:
-          statisitcs[1] += 1;
+          statistic[1] += 1;
           continue;
         case RESULT.THIRD:
-          statisitcs[2] += 1;
+          statistic[2] += 1;
           continue;
         case RESULT.FOURTH:
-          statisitcs[3] += 1;
+          statistic[3] += 1;
           continue;
         case RESULT.FIFTH:
-          statisitcs[4] += 1;
+          statistic[4] += 1;
           continue;
       }
     }
 
-    return statisitcs;
+    return statistic;
   }
 
   getMoney(statistic) {
