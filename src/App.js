@@ -40,6 +40,9 @@ class App {
           Utils.print(`5개 일치 (1,500,000원) - ${statisitcs[2]}개`);
           Utils.print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${statisitcs[1]}개`);
           Utils.print(`6개 일치 (2,000,000,000원) - ${statisitcs[0]}개`);
+
+          const sumOfPrizeMoney = company.getMoney(statisitcs);
+          Utils.print(`총 수익률은 ${company.getRateOfReturn(amount, sumOfPrizeMoney)}%입니다.`);
         });
       });
     });
