@@ -49,19 +49,6 @@ class LottoMachine {
 
     return statistic;
   }
-
-  getMoney(statistic) {
-    let money = 0;
-    const prizeMoneys = [2000000000, 30000000, 1500000, 50000, 5000];
-
-    prizeMoneys.forEach((prizeMoney, index) => (money += prizeMoney * statistic[index]));
-
-    return money;
-  }
-
-  getRateOfReturn(purchaseAmount, sumOfPrizeMoney) {
-    return ((sumOfPrizeMoney / purchaseAmount) * 100).toFixed(1);
-  }
 }
 
 module.exports = LottoMachine;
