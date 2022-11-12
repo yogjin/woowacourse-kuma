@@ -1,19 +1,19 @@
-const Company = require('./Company');
+const LottoMachine = require('./LottoMachine');
 const { ERROR, LOTTO_PRICE } = require('./utils/constants');
 const Lotto = require('./Lotto');
 const { readLine, print } = require('./utils/console');
 
 class App {
   play() {
-    const company = new Company();
+    const lottoMachine = new LottoMachine();
 
     readLine(`구입금액을 입력해 주세요.`, (amount) => {
       if (amount % LOTTO_PRICE !== 0) throw new Error(ERROR.notThousandWonUnit);
 
-      company.generateLotto(amount);
+      lottoMachine.generateLotto(amount);
 
-      const generatedLottosCount = company.getGeneratedLottosCount();
-      const generatedLottos = company.getGeneratedLottos();
+      const generatedLottosCount = lottoMachine.getGeneratedLottosCount();
+      const generatedLottos = lottoMachine.getGeneratedLottos();
 
       print(`${generatedLottosCount}개를 구매했습니다.`);
       generatedLottos.forEach((generatedLotto) => {
@@ -35,7 +35,7 @@ class App {
           if (!(bonusNumber >= 1 && bonusNumber <= 45)) throw new Error(ERROR.notOneToFourtyFiveRange);
           if (lottoWinningNumbers.includes(bonusNumber)) throw new Error(ERROR.bonusNumberExistInLottoWinnningNumbers);
 
-          const statistic = company.getStatistic(lotto, bonusNumber);
+          const statistic = lottoMachine.getStatistic(lotto, bonusNumber);
 
           print(`당첨 통계`);
           print(`---`);
@@ -45,8 +45,8 @@ class App {
           print(`5개 일치, 보너스 볼 일치 (30,000,000원) - ${statistic[1]}개`);
           print(`6개 일치 (2,000,000,000원) - ${statistic[0]}개`);
 
-          const sumOfPrizeMoney = company.getMoney(statistic);
-          print(`총 수익률은 ${company.getRateOfReturn(amount, sumOfPrizeMoney)}%입니다.`);
+          const sumOfPrizeMoney = lottoMachine.getMoney(statistic);
+          print(`총 수익률은 ${lottoMachine.getRateOfReturn(amount, sumOfPrizeMoney)}%입니다.`);
         });
       });
     });

@@ -1,7 +1,7 @@
 const { RESULT } = require('./utils/constants');
 const Lotto = require('./Lotto');
 
-class Company {
+class LottoMachine {
   generatedLottos = [];
 
   constructor() {}
@@ -64,4 +64,4 @@ class Company {
   }
 }
 
-module.exports = Company;
+module.exports = LottoMachine;
