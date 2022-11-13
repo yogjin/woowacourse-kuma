@@ -1,4 +1,4 @@
-const { RESULT, LOTTO_PRICE } = require('./utils/constants');
+const { RESULT, LOTTO_PRICE, ERROR } = require('./utils/constants');
 const Lotto = require('./Lotto');
 const { getAscending } = require('./utils/common');
 const { Random } = require('@woowacourse/mission-utils');
@@ -15,6 +15,7 @@ class LottoMachine {
   }
 
   setBonusNumber(bonusNumber) {
+    if (this.lotto.getWinningNumbers().includes(bonusNumber)) throw new Error(ERROR.bonusNumberExistInLottoWinnningNumbers);
     this.bonusNumber = bonusNumber;
   }
 
@@ -26,6 +27,8 @@ class LottoMachine {
   }
 
   generateLotto(purchasedAmount) {
+    if (purchasedAmount % LOTTO_PRICE !== 0) throw new Error(ERROR.notThousandWonUnit);
+
     const number = purchasedAmount / LOTTO_PRICE;
 
     for (let i = 0; i < number; i++) {

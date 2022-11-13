@@ -1,34 +1,23 @@
 const LottoMachine = require('./LottoMachine');
 const OutputView = require('./OutputView');
-const { ERROR, LOTTO_PRICE } = require('./utils/constants');
+const { getWinningNumbersFromInput, getBonusNumberFromInput } = require('./utils/common');
 
 class App {
   play() {
     const lottoMachine = new LottoMachine();
 
     OutputView.requestPurchaseAmount((purchasedAmount) => {
-      if (purchasedAmount % LOTTO_PRICE !== 0) throw new Error(ERROR.notThousandWonUnit);
-
       lottoMachine.generateLotto(purchasedAmount);
 
       const generatedLottos = lottoMachine.getGeneratedLottos();
       OutputView.printGeneratedLottos(generatedLottos);
 
       OutputView.requestWinningNumbers((input) => {
-        const lottoWinningNumbers = input.split(',').map((number) => {
-          const lottoNumber = parseInt(number, 10);
-          if (!(lottoNumber >= 1 && lottoNumber <= 45)) throw new Error(ERROR.notOneToFourtyFiveRange);
-
-          return lottoNumber;
-        });
-
+        const lottoWinningNumbers = this.getWinningNumbersFromInput(input);
         lottoMachine.setLottoWinningNumbers(lottoWinningNumbers);
 
         OutputView.requestBonusNumber((input) => {
-          const bonusNumber = parseInt(input, 10);
-          if (!(bonusNumber >= 1 && bonusNumber <= 45)) throw new Error(ERROR.notOneToFourtyFiveRange);
-          if (lottoWinningNumbers.includes(bonusNumber)) throw new Error(ERROR.bonusNumberExistInLottoWinnningNumbers);
-
+          const bonusNumber = this.getBonusNumberFromInput(input);
           lottoMachine.setBonusNumber(bonusNumber);
 
           const statistic = lottoMachine.getStatistic();
@@ -38,6 +27,24 @@ class App {
       });
     });
   }
+
+  getWinningNumbersFromInput = (input) => {
+    const lottoWinningNumbers = input.split(',').map((number) => {
+      const lottoNumber = parseInt(number, 10);
+      if (!(lottoNumber >= 1 && lottoNumber <= 45)) throw new Error(ERROR.notOneToFourtyFiveRange);
+
+      return lottoNumber;
+    });
+
+    return lottoWinningNumbers;
+  };
+
+  getBonusNumberFromInput = (input) => {
+    const bonusNumber = parseInt(input, 10);
+    if (!(bonusNumber >= 1 && bonusNumber <= 45)) throw new Error(ERROR.notOneToFourtyFiveRange);
+
+    return bonusNumber;
+  };
 }
 
 const app = new App();
