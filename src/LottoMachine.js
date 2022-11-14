@@ -32,7 +32,7 @@ class LottoMachine {
   }
 
   generateLotto(purchasedAmount) {
-    if (purchasedAmount % LOTTO_PRICE !== 0) throw new Error(ERROR.notThousandWonUnit);
+    if (purchasedAmount <= 0 || purchasedAmount % LOTTO_PRICE !== 0) throw new Error(ERROR.notThousandWonUnit);
 
     const number = purchasedAmount / LOTTO_PRICE;
 
