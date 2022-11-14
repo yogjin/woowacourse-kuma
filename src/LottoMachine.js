@@ -1,6 +1,6 @@
 const { RESULT, LOTTO_PRICE, ERROR } = require('./utils/constants');
 const Lotto = require('./Lotto');
-const { getAscending } = require('./utils/common');
+const { getAscending, getMatchedNumberCount } = require('./utils/common');
 const { Random } = require('@woowacourse/mission-utils');
 
 class LottoMachine {
@@ -51,13 +51,9 @@ class LottoMachine {
   }
 
   #getResult(generatedLotto) {
-    let matchCount = 0;
+    let matchedNumberCount = getMatchedNumberCount(this.lotto.getWinningNumbers(), generatedLotto);
 
-    generatedLotto.forEach((number) => {
-      if (this.lotto.getWinningNumbers().includes(number)) matchCount += 1;
-    });
-
-    switch (matchCount) {
+    switch (matchedNumberCount) {
       case 6:
         return RESULT.FIRST;
       case 5:

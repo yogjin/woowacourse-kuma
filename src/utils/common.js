@@ -19,4 +19,14 @@ const getEarnedAmount = (statistic) => {
   return earnedAmount;
 };
 
-module.exports = { getAscending, getRateOfReturn, getEarnedAmount };
+const getMatchedNumberCount = (lottoWinningNumbers, generatedLotto) => {
+  let matchedNumberCount = 0;
+
+  generatedLotto.forEach((number) => {
+    if (lottoWinningNumbers.includes(number)) matchedNumberCount += 1;
+  });
+
+  return matchedNumberCount;
+};
+
+module.exports = { getAscending, getRateOfReturn, getEarnedAmount, getMatchedNumberCount };
