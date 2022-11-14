@@ -15,6 +15,12 @@ describe('로또 클래스 테스트', () => {
       new Lotto([1, 2, 3, 4, 5, 5]);
     }).toThrow('[ERROR]');
   });
+
+  test('로또 번호가 1~45 사이의 숫자가 아닌 경우 예외가 발생한다.', () => {
+    expect(() => {
+      new Lotto([0, 1, 2, 3, 4, 5]);
+    }).toThrow('[ERROR]');
+  });
 });
 
 describe('LottoMachine 클래스 테스트', () => {
