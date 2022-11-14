@@ -1,6 +1,6 @@
 const Lotto = require('../src/Lotto');
 const LottoMachine = require('../src/LottoMachine');
-const { getAscending } = require('../src/utils/common');
+const { getAscending, getRateOfReturn, getEarnedAmount } = require('../src/utils/common');
 const { LOTTO_PRICE } = require('../src/utils/constants');
 
 describe('로또 클래스 테스트', () => {
@@ -90,5 +90,38 @@ describe('LottoMachine 클래스 테스트', () => {
         FIFTH: 2,
       });
     });
+  });
+});
+
+describe('common 유틸 테스트', () => {
+  test('getAscending(numbers) - 오름차순으로 정렬한 numbers를 리턴한다.', () => {
+    const numbers = [1, 3, 4, 2, 6, 5];
+
+    const ascendingNumbers = getAscending(numbers);
+
+    expect(ascendingNumbers).toEqual([1, 2, 3, 4, 5, 6]);
+  });
+
+  test('getRateOfReturn(earnedAmount, purchasedAmount) - 로또 수익률을 구할 수 있다. (소수점 둘째 자리에서 반올림)', () => {
+    const earnedAmount = 70000;
+    const purchasedAmount = 230000;
+
+    const rateOfReturn = getRateOfReturn(earnedAmount, purchasedAmount);
+
+    expect(rateOfReturn).toEqual(30.4);
+  });
+
+  test('getEarnedAmount(statistic) - 구매한 로또 전체의 당첨금을 구할 수 있다.', () => {
+    const statistic = {
+      FIRST: 1,
+      SECOND: 1,
+      THIRD: 1,
+      FOURTH: 1,
+      FIFTH: 2,
+    };
+
+    const earnedAmount = getEarnedAmount(statistic);
+
+    expect(earnedAmount).toEqual(2031560000);
   });
 });

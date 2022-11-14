@@ -42,8 +42,8 @@
     - [x] 당첨 내역을 구할 수 있다.
 - common 유틸
   - getAscending(numbers)
-    - [ ] 오름차순으로 정렬한 numbers를 리턴한다.
+    - [x] 오름차순으로 정렬한 numbers를 리턴한다.
   - getRateOfReturn(earnedAmount, purchasedAmount)
-    - [ ] 수익률을 구할 수 있다. (소수점 둘째 자리에서 반올림)
+    - [x] 로또 수익률을 구할 수 있다. (소수점 둘째 자리에서 반올림)
   - getEarnedAmount(statistic)
-    - [ ] 구매한 로또 전체의 당첨금을 구할 수 있다.
+    - [x] 구매한 로또 전체의 당첨금을 구할 수 있다.
