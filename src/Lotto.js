@@ -13,6 +13,8 @@ class Lotto {
       throw new Error(ERROR.notSixNumbers);
     } else if (numbers.length !== new Set(numbers).size) {
       throw new Error(ERROR.duplicatedNumbers);
+    } else if (!numbers.every((number) => number >= 1 && number <= 45)) {
+      throw new Error(ERROR.notOneToFourtyFiveRange);
     }
   }
 

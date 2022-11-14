@@ -31,7 +31,6 @@ class App {
   getWinningNumbersFromInput = (input) => {
     const lottoWinningNumbers = input.split(',').map((number) => {
       const lottoNumber = parseInt(number, 10);
-      if (!(lottoNumber >= 1 && lottoNumber <= 45)) throw new Error(ERROR.notOneToFourtyFiveRange);
 
       return lottoNumber;
     });
