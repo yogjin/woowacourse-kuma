@@ -5,7 +5,7 @@ const getAscending = (numbers) => {
 };
 
 const getRateOfReturn = (earnedAmount, purchasedAmount) => {
-  return ((earnedAmount / purchasedAmount) * 100).toFixed(1);
+  return parseFloat(((earnedAmount / purchasedAmount) * 100).toFixed(1));
 };
 
 const getEarnedAmount = (statistic) => {
