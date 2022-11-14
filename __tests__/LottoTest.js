@@ -68,4 +68,27 @@ describe('LottoMachine 클래스 테스트', () => {
       });
     });
   });
+
+  describe('getStatistic()', () => {
+    test('당첨 내역을 구할 수 있다.', () => {
+      lottoMachine.generatedLottos = [
+        [1, 2, 3, 4, 5, 6],
+        [1, 2, 3, 4, 5, 7],
+        [1, 2, 3, 4, 5, 8],
+        [1, 2, 3, 4, 44, 45],
+        [1, 2, 3, 43, 44, 45],
+        [4, 5, 6, 43, 44, 45],
+      ];
+
+      const statistic = lottoMachine.getStatistic();
+
+      expect(statistic).toEqual({
+        FIRST: 1,
+        SECOND: 1,
+        THIRD: 1,
+        FOURTH: 1,
+        FIFTH: 2,
+      });
+    });
+  });
 });
