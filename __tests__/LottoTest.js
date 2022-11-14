@@ -42,6 +42,12 @@ describe('LottoMachine 클래스 테스트', () => {
       }).toThrow('[ERROR]');
     });
 
+    test.each([[-1000], [0]])(`로또 구입 금액이 0원 이하인 경우 예외가 발생한다.`, (purchasedAmount) => {
+      expect(() => {
+        lottoMachine.generateLotto(purchasedAmount);
+      }).toThrow('[ERROR]');
+    });
+
     test('구입 금액에 해당하는 만큼 로또 번호를 생성한다.', () => {
       const purchasedAmount = 8000;
 
