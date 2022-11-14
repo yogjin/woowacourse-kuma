@@ -1,3 +1,4 @@
+const InputView = require('./InputView');
 const LottoMachine = require('./LottoMachine');
 const OutputView = require('./OutputView');
 const { getWinningNumbersFromInput, getBonusNumberFromInput } = require('./utils/common');
@@ -6,17 +7,17 @@ class App {
   play() {
     const lottoMachine = new LottoMachine();
 
-    OutputView.requestPurchaseAmount((purchasedAmount) => {
+    InputView.requestPurchaseAmount((purchasedAmount) => {
       lottoMachine.generateLotto(purchasedAmount);
 
       const generatedLottos = lottoMachine.getGeneratedLottos();
       OutputView.printGeneratedLottos(generatedLottos);
 
-      OutputView.requestWinningNumbers((input) => {
+      InputView.requestWinningNumbers((input) => {
         const lottoWinningNumbers = this.getWinningNumbersFromInput(input);
         lottoMachine.setLottoWinningNumbers(lottoWinningNumbers);
 
-        OutputView.requestBonusNumber((input) => {
+        InputView.requestBonusNumber((input) => {
           const bonusNumber = this.getBonusNumberFromInput(input);
           lottoMachine.setBonusNumber(bonusNumber);
 

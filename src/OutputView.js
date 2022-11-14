@@ -4,24 +4,8 @@ const { getRateOfReturn, getEarnedAmount } = require('./utils/common');
 class OutputView {
   constructor() {}
 
-  static readLine = (text, callback) => {
-    Console.readLine(`${text}\n`, callback);
-  };
-
   static print = (text) => {
     Console.print(text);
-  };
-
-  static requestPurchaseAmount = (callback) => {
-    OutputView.readLine(`구입금액을 입력해 주세요.`, callback);
-  };
-
-  static requestWinningNumbers = (callback) => {
-    OutputView.readLine(`당첨 번호를 입력해 주세요.`, callback);
-  };
-
-  static requestBonusNumber = (callback) => {
-    OutputView.readLine(`보너스 번호를 입력해 주세요.`, callback);
   };
 
   static printGeneratedLottos = (generatedLottos) => {
