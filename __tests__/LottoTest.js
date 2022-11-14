@@ -124,13 +124,14 @@ describe('common 유틸 테스트', () => {
     expect(ascendingNumbers).toEqual([1, 2, 3, 4, 5, 6]);
   });
 
-  test('getRateOfReturn(earnedAmount, purchasedAmount) - 로또 수익률을 구할 수 있다. (소수점 둘째 자리에서 반올림)', () => {
-    const earnedAmount = 70000;
-    const purchasedAmount = 230000;
-
+  test.each([
+    [70000, 230000, 30.4],
+    [2000005000, 3000, 66666833.3],
+    [0, 1000, 0],
+  ])('getRateOfReturn(earnedAmount, purchasedAmount) - 로또 수익률을 구할 수 있다. (소수점 둘째 자리에서 반올림)', (earnedAmount, purchasedAmount, result) => {
     const rateOfReturn = getRateOfReturn(earnedAmount, purchasedAmount);
 
-    expect(rateOfReturn).toEqual(30.4);
+    expect(rateOfReturn).toEqual(result);
   });
 
   test('getEarnedAmount(statistic) - 구매한 로또 전체의 당첨금을 구할 수 있다.', () => {
