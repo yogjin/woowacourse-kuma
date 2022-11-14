@@ -15,7 +15,12 @@ class LottoMachine {
   }
 
   setBonusNumber(bonusNumber) {
-    if (this.lotto.getWinningNumbers().includes(bonusNumber)) throw new Error(ERROR.bonusNumberExistInLottoWinnningNumbers);
+    if (this.lotto.getWinningNumbers().includes(bonusNumber)) {
+      throw new Error(ERROR.bonusNumberExistInLottoWinnningNumbers);
+    } else if (!(bonusNumber >= 1 && bonusNumber <= 45)) {
+      throw new Error(ERROR.notOneToFourtyFiveRange);
+    }
+
     this.bonusNumber = bonusNumber;
   }
 

@@ -40,7 +40,6 @@ class App {
 
   getBonusNumberFromInput = (input) => {
     const bonusNumber = parseInt(input, 10);
-    if (!(bonusNumber >= 1 && bonusNumber <= 45)) throw new Error(ERROR.notOneToFourtyFiveRange);
 
     return bonusNumber;
   };
