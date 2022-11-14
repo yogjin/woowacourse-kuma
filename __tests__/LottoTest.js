@@ -1,6 +1,6 @@
 const Lotto = require('../src/Lotto');
 const LottoMachine = require('../src/LottoMachine');
-const { getAscending, getRateOfReturn, getEarnedAmount } = require('../src/utils/common');
+const { getAscending, getRateOfReturn, getEarnedAmount, getMatchedNumberCount } = require('../src/utils/common');
 const { LOTTO_PRICE } = require('../src/utils/constants');
 
 describe('로또 클래스 테스트', () => {
@@ -145,5 +145,25 @@ describe('common 유틸 테스트', () => {
     const earnedAmount = getEarnedAmount(statistic);
 
     expect(earnedAmount).toEqual(2031560000);
+  });
+
+  test('getMatchedNumberCount(lottoWinningNumbers, generatedLotto) - 당첨번호와 로또번호를 비교하여 일치하는 번호의 개수를 구할 수 있다.', () => {
+    const lottoWinningNumbers = [1, 2, 3, 4, 5, 6];
+    const generatedLottos = [
+      [1, 2, 3, 4, 5, 6],
+      [1, 2, 3, 4, 5, 7],
+      [1, 2, 3, 4, 44, 45],
+      [1, 2, 3, 43, 44, 45],
+      [1, 2, 42, 43, 44, 45],
+      [1, 41, 42, 43, 44, 45],
+      [40, 41, 42, 43, 44, 45],
+    ];
+    const result = [6, 5, 4, 3, 2, 1, 0];
+
+    generatedLottos.forEach((generatedLotto, index) => {
+      const matchedNumberCount = getMatchedNumberCount(lottoWinningNumbers, generatedLotto);
+
+      expect(matchedNumberCount).toEqual(result[index]);
+    });
   });
 });

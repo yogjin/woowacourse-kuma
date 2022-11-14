@@ -55,3 +55,5 @@
     - [x] 로또 수익률을 구할 수 있다. (소수점 둘째 자리에서 반올림)
   - getEarnedAmount(statistic)
     - [x] 구매한 로또 전체의 당첨금을 구할 수 있다.
+  - getMatchedNumberCount(lottoWinningNumbers, generatedLotto)
+    - [x] 당첨번호와 로또번호를 비교하여 일치하는 번호의 개수를 구할 수 있다.
