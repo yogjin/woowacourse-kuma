@@ -75,7 +75,7 @@ class Player {
       }
     }
 
-    return statistic;
+    this.statistic = statistic;
   }
 
   getStatistic() {
