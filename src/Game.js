@@ -65,6 +65,7 @@ class Game {
   terminate() {
     OutputView.printBlankLine();
     OutputView.print(MESSAGE.TERMINATE_GAME);
+    OutputView.closeConsole();
   }
 
   getWinningNumbersFromInput = (input) => {
