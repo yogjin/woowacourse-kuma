@@ -9,6 +9,10 @@ class OutputView {
     Console.print(text);
   };
 
+  static printBlankLine = () => {
+    Console.print('');
+  };
+
   static printPurchasedLottos = (purchasedLottos) => {
     OutputView.print(`${purchasedLottos.length}개를 구매했습니다.`);
     purchasedLottos.forEach((purchasedLotto) => {
