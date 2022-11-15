@@ -21,7 +21,7 @@ class Player {
       case 6:
         return RESULT.FIRST;
       case 5:
-        if (generatedLotto.includes(bonusNumber)) return RESULT.SECOND;
+        if (purchasedLotto.includes(bonusNumber)) return RESULT.SECOND;
         return RESULT.THIRD;
       case 4:
         return RESULT.FOURTH;
