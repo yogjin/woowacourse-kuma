@@ -1,4 +1,4 @@
-const Player = require('../src/Player');
+const Player = require('../src/domain/Player');
 const { LOTTO_PRICE } = require('../src/utils/constants');
 
 describe('Player 클래스 테스트', () => {

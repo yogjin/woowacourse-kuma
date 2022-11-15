@@ -1,5 +1,5 @@
-const { ERROR } = require('./utils/constants');
-const Lotto = require('./Lotto');
+const Lotto = require('../Lotto');
+const { ERROR } = require('../utils/constants');
 
 class LottoMachine {
   lotto;

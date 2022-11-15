@@ -1,4 +1,4 @@
-const LottoMachine = require('../src/LottoMachine');
+const LottoMachine = require('../src/domain/LottoMachine');
 
 describe('LottoMachine 클래스 테스트', () => {
   const lottoWinningNumbers = [1, 2, 3, 4, 5, 6];

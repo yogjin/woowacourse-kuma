@@ -1,4 +1,4 @@
-const LottoStore = require('../src/LottoStore');
+const LottoStore = require('../src/domain/LottoStore');
 const { getAscending } = require('../src/utils/common');
 
 describe('LottoStore 클래스 테스트', () => {

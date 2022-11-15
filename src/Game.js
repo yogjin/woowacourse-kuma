@@ -1,7 +1,7 @@
-const InputView = require('./InputView');
-const OutputView = require('./OutputView');
-const Player = require('./Player');
-const LottoMachine = require('./LottoMachine');
+const InputView = require('./ui/InputView');
+const OutputView = require('./ui/OutputView');
+const LottoMachine = require('./domain/LottoMachine');
+const Player = require('./domain/Player');
 const { MESSAGE } = require('./utils/constants');
 
 class Game {

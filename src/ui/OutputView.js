@@ -1,6 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { getRateOfReturn, getEarnedAmount } = require('./utils/common');
-const { MESSAGE } = require('./utils/constants');
+const { getRateOfReturn, getEarnedAmount } = require('../utils/common');
+const { MESSAGE } = require('../utils/constants');
 
 class OutputView {
   constructor() {}

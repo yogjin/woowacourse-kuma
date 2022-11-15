@@ -1,5 +1,5 @@
 const Lotto = require('../src/Lotto');
-const LottoMachine = require('../src/LottoMachine');
+const LottoMachine = require('../src/domain/LottoMachine');
 const { getAscending, getRateOfReturn, getEarnedAmount, getMatchedNumberCount } = require('../src/utils/common');
 const { LOTTO_PRICE } = require('../src/utils/constants');
 

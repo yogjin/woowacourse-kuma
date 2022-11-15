@@ -1,6 +1,6 @@
 const LottoStore = require('./LottoStore');
-const { getMatchedNumberCount } = require('./utils/common');
-const { RESULT } = require('./utils/constants');
+const { getMatchedNumberCount } = require('../utils/common');
+const { RESULT } = require('../utils/constants');
 
 class Player {
   purchasedLottos = [];

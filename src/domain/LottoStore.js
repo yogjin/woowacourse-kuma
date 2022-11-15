@@ -1,6 +1,6 @@
 const { Random } = require('@woowacourse/mission-utils');
-const { LOTTO_PRICE, ERROR } = require('./utils/constants');
-const { getAscending } = require('./utils/common');
+const { getAscending } = require('../utils/common');
+const { LOTTO_PRICE, ERROR } = require('../utils/constants');
 
 class LottoStore {
   constructor() {}
