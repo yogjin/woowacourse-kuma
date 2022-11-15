@@ -5,39 +5,65 @@ const Player = require('./domain/Player');
 const { MESSAGE } = require('./utils/constants');
 
 class Game {
-  constructor() {}
+  constructor() {
+    this.player = new Player();
+    this.lottoMachine = new LottoMachine();
+  }
 
   start() {
-    const player = new Player();
-    const lottoMachine = new LottoMachine();
+    this.purchaseLotto();
+  }
 
+  purchaseLotto() {
     InputView.requestPurchaseAmount((purchasedAmount) => {
-      player.purchaseLottos(purchasedAmount);
+      this.player.purchaseLottos(purchasedAmount);
+      const purchasedLottos = this.player.getPurchasedLottos();
 
-      const purchasedLottos = player.getPurchasedLottos();
+      OutputView.printBlankLine();
       OutputView.printPurchasedLottos(purchasedLottos);
 
-      InputView.requestWinningNumbers((input) => {
-        const lottoWinningNumbers = this.getWinningNumbersFromInput(input);
-        lottoMachine.setLottoWinningNumbers(lottoWinningNumbers);
-
-        InputView.requestBonusNumber((input) => {
-          const bonusNumber = this.getBonusNumberFromInput(input);
-          lottoMachine.setBonusNumber(bonusNumber);
-
-          player.calculateStatistic(lottoWinningNumbers, bonusNumber);
-          const statistic = player.getStatistic();
-
-          OutputView.printStatistic(statistic);
-          OutputView.printRateOfReturn(purchasedAmount, statistic);
-
-          this.terminate();
-        });
-      });
+      this.setWinningNumbers();
     });
   }
 
+  setWinningNumbers() {
+    OutputView.printBlankLine();
+    InputView.requestWinningNumbers((input) => {
+      const lottoWinningNumbers = this.getWinningNumbersFromInput(input);
+      this.lottoMachine.setLottoWinningNumbers(lottoWinningNumbers);
+
+      this.setBonusNumber();
+    });
+  }
+
+  setBonusNumber() {
+    OutputView.printBlankLine();
+    InputView.requestBonusNumber((input) => {
+      const bonusNumber = this.getBonusNumberFromInput(input);
+      this.lottoMachine.setBonusNumber(bonusNumber);
+
+      this.showStatistic();
+    });
+  }
+
+  showStatistic() {
+    OutputView.printBlankLine();
+    const lottoWinningNumbers = this.lottoMachine.getLottoWinningNumbers();
+    const bonusNumber = this.lottoMachine.getBonusNumber();
+
+    this.player.calculateStatistic(lottoWinningNumbers, bonusNumber);
+
+    const statistic = this.player.getStatistic();
+    const purchasedAmount = this.player.getPurchasedAmount();
+
+    OutputView.printStatistic(statistic);
+    OutputView.printRateOfReturn(purchasedAmount, statistic);
+
+    this.terminate();
+  }
+
   terminate() {
+    OutputView.printBlankLine();
     OutputView.print(MESSAGE.TERMINATE_GAME);
   }
 
