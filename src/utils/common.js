@@ -19,10 +19,10 @@ const getEarnedAmount = (statistic) => {
   return earnedAmount;
 };
 
-const getMatchedNumberCount = (lottoWinningNumbers, generatedLotto) => {
+const getMatchedNumberCount = (lottoWinningNumbers, purchasedLotto) => {
   let matchedNumberCount = 0;
 
-  generatedLotto.forEach((number) => {
+  purchasedLotto.forEach((number) => {
     if (lottoWinningNumbers.includes(number)) matchedNumberCount += 1;
   });
 

@@ -8,6 +8,10 @@ class InputView {
     Console.readLine(`${text}\n`, callback);
   };
 
+  static closeReadLine = () => {
+    Console.close();
+  };
+
   static requestPurchaseAmount = (callback) => {
     InputView.readLine(MESSAGE.REQUEST.PURCHASE_AMOUNT, callback);
   };

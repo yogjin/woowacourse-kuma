@@ -43,6 +43,7 @@ const MESSAGE = Object.freeze({
   },
 
   RATE_OF_RETURN: (rateOfReturn) => `총 수익률은 ${rateOfReturn}%입니다.`,
+  TERMINATE_GAME: `로또 게임을 종료합니다.`,
 });
 
 module.exports = { RESULT, ERROR, LOTTO_PRICE, PRIZE_MONEY, MESSAGE };

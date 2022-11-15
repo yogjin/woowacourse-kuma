@@ -9,10 +9,10 @@ class OutputView {
     Console.print(text);
   };
 
-  static printGeneratedLottos = (generatedLottos) => {
-    OutputView.print(`${generatedLottos.length}개를 구매했습니다.`);
-    generatedLottos.forEach((generatedLotto) => {
-      OutputView.print(`[${generatedLotto[0]}, ${generatedLotto[1]}, ${generatedLotto[2]}, ${generatedLotto[3]}, ${generatedLotto[4]}, ${generatedLotto[5]}]`);
+  static printPurchasedLottos = (purchasedLottos) => {
+    OutputView.print(`${purchasedLottos.length}개를 구매했습니다.`);
+    purchasedLottos.forEach((purchasedLotto) => {
+      OutputView.print(`[${purchasedLotto[0]}, ${purchasedLotto[1]}, ${purchasedLotto[2]}, ${purchasedLotto[3]}, ${purchasedLotto[4]}, ${purchasedLotto[5]}]`);
     });
   };
 
@@ -30,6 +30,10 @@ class OutputView {
     const earnedAmount = getEarnedAmount(statistic);
     const rateOfReturn = getRateOfReturn(earnedAmount, purchasedAmount);
     OutputView.print(MESSAGE.RATE_OF_RETURN(rateOfReturn));
+  };
+
+  static printGameTerminationMessage = () => {
+    OutputView.print(MESSAGE.TERMINATE_GAME);
   };
 }
 
