@@ -11,6 +11,10 @@ class LottoMachine {
     this.lotto = new Lotto(lottoWinningNumbers);
   }
 
+  getLottoWinningNumbers() {
+    return this.lotto.getWinningNumbers();
+  }
+
   setBonusNumber(bonusNumber) {
     if (this.lotto.getWinningNumbers().includes(bonusNumber)) {
       throw new Error(ERROR.bonusNumberExistInLottoWinnningNumbers);
@@ -19,6 +23,10 @@ class LottoMachine {
     }
 
     this.bonusNumber = bonusNumber;
+  }
+
+  getBonusNumber() {
+    return this.bonusNumber;
   }
 }
 
