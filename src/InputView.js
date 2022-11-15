@@ -1,4 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { MESSAGE } = require('./utils/constants');
 
 class InputView {
   constructor() {}
@@ -8,15 +9,15 @@ class InputView {
   };
 
   static requestPurchaseAmount = (callback) => {
-    InputView.readLine(`구입금액을 입력해 주세요.`, callback);
+    InputView.readLine(MESSAGE.REQUEST.PURCHASE_AMOUNT, callback);
   };
 
   static requestWinningNumbers = (callback) => {
-    InputView.readLine(`당첨 번호를 입력해 주세요.`, callback);
+    InputView.readLine(MESSAGE.REQUEST.WINNING_NUMBERS, callback);
   };
 
   static requestBonusNumber = (callback) => {
-    InputView.readLine(`보너스 번호를 입력해 주세요.`, callback);
+    InputView.readLine(MESSAGE.REQUEST.BOUNS_NUMBER, callback);
   };
 }
 
