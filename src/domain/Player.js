@@ -4,6 +4,7 @@ const { RESULT } = require('../utils/constants');
 
 class Player {
   purchasedLottos = [];
+  purchasedAmount = 0;
   statistic = {
     FIRST: 0,
     SECOND: 0,
@@ -33,6 +34,7 @@ class Player {
   }
 
   purchaseLottos(purchasedAmount) {
+    this.purchasedAmount += purchasedAmount;
     this.purchasedLottos = [...this.purchasedLottos, ...LottoStore.getGeneratedLottos(purchasedAmount)];
   }
 
@@ -42,6 +44,10 @@ class Player {
 
   getPurchasedLottosCount() {
     return this.purchasedLottos.length;
+  }
+
+  getPurchasedAmount() {
+    return this.purchasedAmount;
   }
 
   calculateStatistic(lottoWinningNumbers, bonusNumber) {
