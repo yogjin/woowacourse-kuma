@@ -42,6 +42,7 @@ const InputView = {
         if (restartOrQuit === 'R') {
           retry();
         } else {
+          quit();
         }
       },
     );
