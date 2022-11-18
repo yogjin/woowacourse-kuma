@@ -1,9 +1,7 @@
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-const { printGameStartMessage } = require('./OutputView');
-const { readBridgeSize } = require('./InputView');
-const { printGameStartMessage, printMap } = require('./OutputView');
+const { printGameStartMessage, printMap, printResult } = require('./OutputView');
 const { readBridgeSize, readMoving, readGameCommand } = require('./InputView');
 
 class BridgeGame {
@@ -38,8 +36,16 @@ class BridgeGame {
     if (!this.#history[this.#history.length - 1].isSuccess) {
       // 게임 재시작/종료 여부를 입력 받는다
       readGameCommand(this.retry.bind(this), this.quit.bind(this));
+    } else if (this.#next === this.#bridge.length) {
+      this.process5();
+    } else {
+      this.process3();
     }
-    this.process3();
+  }
+
+  // 게임 종료
+  process5() {
+    printResult(this.#history);
   }
 
   /**
@@ -65,7 +71,9 @@ class BridgeGame {
     this.process3();
   }
 
-  quit() {}
+  quit() {
+    this.process5();
+  }
 
   setBridge(bridge) {
     this.#bridge = bridge;
