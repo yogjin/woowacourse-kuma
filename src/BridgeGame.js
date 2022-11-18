@@ -8,10 +8,12 @@ class BridgeGame {
   #bridge;
   #next;
   #history;
+  #tryCount;
 
   constructor() {
     this.#next = 0;
     this.#history = [];
+    this.#tryCount = 1;
   }
 
   start() {
@@ -45,7 +47,7 @@ class BridgeGame {
 
   // 게임 종료
   process5() {
-    printResult(this.#history);
+    printResult(this.#history, this.#tryCount);
   }
 
   /**
@@ -68,6 +70,7 @@ class BridgeGame {
   retry() {
     this.#next = 0;
     this.#history = [];
+    this.#tryCount += 1;
     this.process3();
   }
 
