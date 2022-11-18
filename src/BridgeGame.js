@@ -4,7 +4,7 @@
 const { printGameStartMessage } = require('./OutputView');
 const { readBridgeSize } = require('./InputView');
 const { printGameStartMessage, printMap } = require('./OutputView');
-const { readBridgeSize, readMoving } = require('./InputView');
+const { readBridgeSize, readMoving, readGameCommand } = require('./InputView');
 
 class BridgeGame {
   #bridge;
@@ -37,6 +37,7 @@ class BridgeGame {
     printMap(this.#history);
     if (!this.#history[this.#history.length - 1].isSuccess) {
       // 게임 재시작/종료 여부를 입력 받는다
+      readGameCommand(this.retry.bind(this), this.quit.bind(this));
     }
     this.process3();
   }
@@ -59,6 +60,8 @@ class BridgeGame {
    * 재시작을 위해 필요한 메서드의 반환 값(return value), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
   retry() {}
+
+  quit() {}
 
   setBridge(bridge) {
     this.#bridge = bridge;
