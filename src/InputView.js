@@ -29,6 +29,7 @@ const InputView = {
    */
   readMoving(move, process4) {
     Console.readLine(`이동할 칸을 선택해주세요. (위: U, 아래: D)`, (upOrDown) => {
+      if (!['U', 'D'].includes(upOrDown)) throw new Error(`[ERROR] 이동할 칸은 'U' 또는 'D' 여야 합니다.`);
       move(upOrDown);
       process4();
     });
