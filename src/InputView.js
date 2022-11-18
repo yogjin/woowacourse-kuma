@@ -5,9 +5,12 @@ const InputView = {
   /**
    * 다리의 길이를 입력받는다.
    */
-  readBridgeSize() {
+  readBridgeSize(setBridge) {
     Console.readLine(`다리의 길이를 입력해주세요.`, (input) => {
       const size = parseInt(input, 10);
+      const bridge = BridgeMaker.makeBridge(size, BridgeRandomNumberGenerator.generate);
+
+      setBridge(bridge);
     });
   },
 
