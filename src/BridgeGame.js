@@ -35,8 +35,12 @@ class BridgeGame {
 
   process4() {
     printMap(this.#history);
+    if (!this.#history[this.#history.length - 1].isSuccess) {
+      // 게임 재시작/종료 여부를 입력 받는다
+    }
     this.process3();
   }
+
   /**
    * 사용자가 칸을 이동할 때 사용하는 메서드
    * <p>
