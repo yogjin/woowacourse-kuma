@@ -14,13 +14,19 @@ const InputView = {
    */
   readBridgeSize(setBridge, process3) {
     Console.readLine(`다리의 길이를 입력해주세요.`, (input) => {
-      const size = parseInt(input, 10);
-      const bridge = BridgeMaker.makeBridge(size, BridgeRandomNumberGenerator.generate);
+      try {
+        const size = parseInt(input, 10);
+        const bridge = BridgeMaker.makeBridge(size, BridgeRandomNumberGenerator.generate);
 
-      if (!(size >= 3 && size <= 20)) throw new Error('[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.');
-
-      setBridge(bridge);
-      process3();
+        if (!(size >= 3 && size <= 20)) {
+          throw new Error('[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.');
+        }
+        setBridge(bridge);
+        process3();
+      } catch (error) {
+        Console.print(error.message);
+        InputView.readBridgeSize(setBridge, process3);
+      }
     });
   },
 
@@ -29,9 +35,14 @@ const InputView = {
    */
   readMoving(move, process4) {
     Console.readLine(`이동할 칸을 선택해주세요. (위: U, 아래: D)`, (upOrDown) => {
-      if (!['U', 'D'].includes(upOrDown)) throw new Error(`[ERROR] 이동할 칸은 'U' 또는 'D' 여야 합니다.`);
-      move(upOrDown);
-      process4();
+      try {
+        if (!['U', 'D'].includes(upOrDown)) throw new Error(`[ERROR] 이동할 칸은 'U' 또는 'D' 여야 합니다.`);
+        move(upOrDown);
+        process4();
+      } catch (error) {
+        Console.print(error.message);
+        InputView.readMoving(move, process4);
+      }
     });
   },
 
@@ -40,11 +51,16 @@ const InputView = {
    */
   readGameCommand(retry, quit) {
     Console.readLine(`게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)`, (restartOrQuit) => {
-      if (!['R', 'Q'].includes(restartOrQuit)) throw new Error(`[ERROR] 'R' 또는 'Q'를 입력해주세요.`);
-      if (restartOrQuit === 'R') {
-        retry();
-      } else {
-        quit();
+      try {
+        if (!['R', 'Q'].includes(restartOrQuit)) throw new Error(`[ERROR] 'R' 또는 'Q'를 입력해주세요.`);
+        if (restartOrQuit === 'R') {
+          retry();
+        } else {
+          quit();
+        }
+      } catch (error) {
+        Console.print(error.message);
+        InputView.readGameCommand(retry, quit);
       }
     });
   },
