@@ -12,20 +12,24 @@ const InputView = {
   /**
    * 다리의 길이를 입력받는다.
    */
-  readBridgeSize(setBridge) {
+  readBridgeSize(setBridge, process3) {
     Console.readLine(`다리의 길이를 입력해주세요.`, (input) => {
       const size = parseInt(input, 10);
       const bridge = BridgeMaker.makeBridge(size, BridgeRandomNumberGenerator.generate);
 
       setBridge(bridge);
+      process3();
     });
   },
 
   /**
    * 사용자가 이동할 칸을 입력받는다.
    */
-  readMoving() {
-    Console.readLine(`이동할 칸을 선택해주세요. (위: U, 아래: D)`, (input) => {});
+  readMoving(move, process4) {
+    Console.readLine(`이동할 칸을 선택해주세요. (위: U, 아래: D)`, (upOrDown) => {
+      move(upOrDown);
+      process4();
+    });
   },
 
   /**
