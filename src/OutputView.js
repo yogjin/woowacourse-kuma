@@ -2,6 +2,7 @@
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 const { Console } = require('@woowacourse/mission-utils');
+const MESSAGE = require('./utils/constants/message');
 
 //  제공된 OutputView 객체를 활용해 구현해야 한다.
 //  OutputView의 파일 경로는 변경할 수 있다.
@@ -44,15 +45,16 @@ const OutputView = {
    * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
   printResult(history, tryCount) {
-    const result = history[history.length - 1].isSuccess ? '성공' : '실패';
-    Console.print(`최종 게임 결과`);
+    const isSuccess = history[history.length - 1].isSuccess;
+
+    Console.print(MESSAGE.OUTPUT.FINAL_GAME_RESULT);
     OutputView.printMap(history);
-    Console.print(`게임 성공 여부: ${result}`);
-    Console.print(`총 시도한 횟수: ${tryCount}`);
+    Console.print(MESSAGE.OUTPUT.GAME_SUCCESS_OR_NOT(isSuccess));
+    Console.print(MESSAGE.OUTPUT.ATTEMPTS_NUMBER(tryCount));
   },
 
   printGameStartMessage() {
-    Console.print(`다리 건너기 게임을 시작합니다.`);
+    Console.print(MESSAGE.OUTPUT.GAME_START);
   },
 };
 

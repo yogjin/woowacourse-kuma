@@ -4,6 +4,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const BridgeMaker = require('./BridgeMaker');
 const BridgeRandomNumberGenerator = require('./BridgeRandomNumberGenerator');
+const MESSAGE = require('./utils/constants/message');
 //  제공된 InputView 객체를 활용해 구현해야 한다.
 //  InputView의 파일 경로는 변경할 수 있다.
 //  InputView의 메서드의 인자는 변경할 수 있다.
@@ -13,13 +14,13 @@ const InputView = {
    * 다리의 길이를 입력받는다.
    */
   readBridgeSize(setBridge, process3) {
-    Console.readLine(`다리의 길이를 입력해주세요.`, (input) => {
+    Console.readLine(MESSAGE.INPUT.BRIDGE_LENGTH, (input) => {
       try {
         const size = parseInt(input, 10);
         const bridge = BridgeMaker.makeBridge(size, BridgeRandomNumberGenerator.generate);
 
         if (!(size >= 3 && size <= 20)) {
-          throw new Error('[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.');
+          throw new Error(MESSAGE.ERROR.BRIDGE_LENGTH_INPUT_IS_BETWEEN_THREE_AND_TWENTY);
         }
         setBridge(bridge);
         process3();
@@ -34,9 +35,9 @@ const InputView = {
    * 사용자가 이동할 칸을 입력받는다.
    */
   readMoving(move, process4) {
-    Console.readLine(`이동할 칸을 선택해주세요. (위: U, 아래: D)`, (upOrDown) => {
+    Console.readLine(MESSAGE.INPUT.SELECT_DIRECTION, (upOrDown) => {
       try {
-        if (!['U', 'D'].includes(upOrDown)) throw new Error(`[ERROR] 이동할 칸은 'U' 또는 'D' 여야 합니다.`);
+        if (!['U', 'D'].includes(upOrDown)) throw new Error(MESSAGE.ERROR.MOVING_DIRECTION_INPUT_IS_U_OR_D);
         move(upOrDown);
         process4();
       } catch (error) {
@@ -50,9 +51,9 @@ const InputView = {
    * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
    */
   readGameCommand(retry, quit) {
-    Console.readLine(`게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)`, (restartOrQuit) => {
+    Console.readLine(MESSAGE.INPUT.RETRY_OR_QUIT, (restartOrQuit) => {
       try {
-        if (!['R', 'Q'].includes(restartOrQuit)) throw new Error(`[ERROR] 'R' 또는 'Q'를 입력해주세요.`);
+        if (!['R', 'Q'].includes(restartOrQuit)) throw new Error(MESSAGE.ERROR.RETRY_INPUT_IS_R_OR_Q);
         if (restartOrQuit === 'R') {
           retry();
         } else {
