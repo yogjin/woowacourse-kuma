@@ -1,8 +1,10 @@
+const { COMMAND, BRIDGE } = require('./game');
+
 const MESSAGE = Object.freeze({
   INPUT: {
     BRIDGE_LENGTH: '다리의 길이를 입력해주세요.',
-    SELECT_DIRECTION: '이동할 칸을 선택해주세요. (위: U, 아래: D)',
-    RETRY_OR_QUIT: '게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)',
+    SELECT_DIRECTION: `이동할 칸을 선택해주세요. (위: ${COMMAND.MOVE.UP}, 아래: ${COMMAND.MOVE.DOWN})`,
+    RETRY_OR_QUIT: `게임을 다시 시도할지 여부를 입력해주세요. (재시도: ${COMMAND.RETRY}, 종료: ${COMMAND.QUIT})`,
   },
 
   OUTPUT: {
@@ -18,9 +20,9 @@ const MESSAGE = Object.freeze({
   },
 
   ERROR: {
-    BRIDGE_LENGTH_INPUT_IS_BETWEEN_THREE_AND_TWENTY: '[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.',
-    MOVING_DIRECTION_INPUT_IS_U_OR_D: `[ERROR] 이동할 칸은 'U' 또는 'D' 여야 합니다.`,
-    RETRY_INPUT_IS_R_OR_Q: `[ERROR] 'R' 또는 'Q'를 입력해주세요.`,
+    BRIDGE_LENGTH_INPUT_IS_BETWEEN_THREE_AND_TWENTY: `[ERROR] 다리 길이는 ${BRIDGE.LENGTH.MIN}부터 ${BRIDGE.LENGTH.MAX} 사이의 숫자여야 합니다.`,
+    MOVING_DIRECTION_INPUT_IS_U_OR_D: `[ERROR] 이동할 칸은 '${COMMAND.MOVE.UP}' 또는 '${COMMAND.MOVE.DOWN}' 여야 합니다.`,
+    RETRY_INPUT_IS_R_OR_Q: `[ERROR] '${COMMAND.RETRY}' 또는 '${COMMAND.QUIT}'를 입력해주세요.`,
   },
 });
 

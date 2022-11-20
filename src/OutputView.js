@@ -2,6 +2,7 @@
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 const { Console } = require('@woowacourse/mission-utils');
+const { MAP, COMMAND } = require('./utils/constants/game');
 const MESSAGE = require('./utils/constants/message');
 
 //  제공된 OutputView 객체를 활용해 구현해야 한다.
@@ -16,24 +17,24 @@ const OutputView = {
    */
   printMap(history) {
     // { position: this.#next, upOrDown, isSuccess }
-    let upPrint = '[';
-    let downPrint = '[';
+    let upPrint = MAP.LEFT_BRACKET;
+    let downPrint = MAP.LEFT_BRACKET;
     history.forEach((item) => {
       if (item.position > 0) {
-        upPrint += `|`;
-        downPrint += `|`;
+        upPrint += MAP.DIVIDER;
+        downPrint += MAP.DIVIDER;
       }
-      const char = item.isSuccess ? 'O' : 'X';
-      if (item.upOrDown === 'U') {
-        upPrint += ` ${char} `;
-        downPrint += `   `;
+      const isSuccess = item.isSuccess;
+      if (item.upOrDown === COMMAND.MOVE.UP) {
+        upPrint += MAP.MOVE_RESULT_ICON(isSuccess);
+        downPrint += MAP.BLANK;
       } else {
-        upPrint += `   `;
-        downPrint += ` ${char} `;
+        upPrint += MAP.BLANK;
+        downPrint += MAP.MOVE_RESULT_ICON(isSuccess);
       }
     });
-    upPrint += ']';
-    downPrint += ']';
+    upPrint += MAP.RIGHT_BRACKET;
+    downPrint += MAP.RIGHT_BRACKET;
 
     Console.print(upPrint);
     Console.print(downPrint);

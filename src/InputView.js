@@ -4,6 +4,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const BridgeMaker = require('./BridgeMaker');
 const BridgeRandomNumberGenerator = require('./BridgeRandomNumberGenerator');
+const { COMMAND, BRIDGE } = require('./utils/constants/game');
 const MESSAGE = require('./utils/constants/message');
 //  제공된 InputView 객체를 활용해 구현해야 한다.
 //  InputView의 파일 경로는 변경할 수 있다.
@@ -19,7 +20,7 @@ const InputView = {
         const size = parseInt(input, 10);
         const bridge = BridgeMaker.makeBridge(size, BridgeRandomNumberGenerator.generate);
 
-        if (!(size >= 3 && size <= 20)) {
+        if (!(size >= BRIDGE.LENGTH.MIN && size <= BRIDGE.LENGTH.MAX)) {
           throw new Error(MESSAGE.ERROR.BRIDGE_LENGTH_INPUT_IS_BETWEEN_THREE_AND_TWENTY);
         }
         setBridge(bridge);
@@ -37,7 +38,7 @@ const InputView = {
   readMoving(move, process4) {
     Console.readLine(MESSAGE.INPUT.SELECT_DIRECTION, (upOrDown) => {
       try {
-        if (!['U', 'D'].includes(upOrDown)) throw new Error(MESSAGE.ERROR.MOVING_DIRECTION_INPUT_IS_U_OR_D);
+        if (![COMMAND.MOVE.UP, COMMAND.MOVE.DOWN].includes(upOrDown)) throw new Error(MESSAGE.ERROR.MOVING_DIRECTION_INPUT_IS_U_OR_D);
         move(upOrDown);
         process4();
       } catch (error) {
@@ -53,8 +54,8 @@ const InputView = {
   readGameCommand(retry, quit) {
     Console.readLine(MESSAGE.INPUT.RETRY_OR_QUIT, (restartOrQuit) => {
       try {
-        if (!['R', 'Q'].includes(restartOrQuit)) throw new Error(MESSAGE.ERROR.RETRY_INPUT_IS_R_OR_Q);
-        if (restartOrQuit === 'R') {
+        if (![COMMAND.RETRY, COMMAND.QUIT].includes(restartOrQuit)) throw new Error(MESSAGE.ERROR.RETRY_INPUT_IS_R_OR_Q);
+        if (restartOrQuit === COMMAND.RETRY) {
           retry();
         } else {
           quit();

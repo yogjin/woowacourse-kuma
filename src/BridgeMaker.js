@@ -4,6 +4,9 @@
 //  제공된 BridgeMaker 객체를 활용해 구현해야 한다.
 //  BridgeMaker에 프로퍼티를 추가할 수 없다.
 //  BridgeMaker의 파일 경로는 변경할 수 없다.
+
+const { COMMAND } = require('./utils/constants/game');
+
 //  BridgeMaker의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
 const BridgeMaker = {
   /**
@@ -17,8 +20,8 @@ const BridgeMaker = {
     for (let i = 0; i < size; i += 1) {
       const randomNumber = String(generateRandomNumber());
 
-      if (randomNumber === '0') bridge.push('D');
-      else if (randomNumber === '1') bridge.push('U');
+      if (randomNumber === '0') bridge.push(COMMAND.MOVE.DOWN);
+      else if (randomNumber === '1') bridge.push(COMMAND.MOVE.UP);
     }
 
     return bridge;
