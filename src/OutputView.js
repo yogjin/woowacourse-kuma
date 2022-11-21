@@ -46,16 +46,30 @@ const OutputView = {
    * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
   printResult(history, tryCount) {
-    const isSuccess = history[history.length - 1].isSuccess;
-
-    Console.print(MESSAGE.OUTPUT.FINAL_GAME_RESULT);
+    OutputView.printFinalGameResult();
     OutputView.printMap(history);
-    Console.print(MESSAGE.OUTPUT.GAME_SUCCESS_OR_NOT(isSuccess));
-    Console.print(MESSAGE.OUTPUT.ATTEMPTS_NUMBER(tryCount));
+    OutputView.printGameSuccessOrNot(history);
+    OutputView.printAttemptsNumber(tryCount);
   },
 
   printGameStartMessage() {
     Console.print(MESSAGE.OUTPUT.GAME_START);
+  },
+
+  printFinalGameResult() {
+    Console.print(MESSAGE.OUTPUT.FINAL_GAME_RESULT);
+  },
+
+  printGameSuccessOrNot(history) {
+    Console.print(MESSAGE.OUTPUT.GAME_SUCCESS_OR_NOT(OutputView.getIsSuccess(history)));
+  },
+
+  printAttemptsNumber(tryCount) {
+    Console.print(MESSAGE.OUTPUT.ATTEMPTS_NUMBER(tryCount));
+  },
+
+  getIsSuccess(history) {
+    return history[history.length - 1].isSuccess;
   },
 };
 
