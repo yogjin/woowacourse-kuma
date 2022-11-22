@@ -15,49 +15,41 @@ class BridgeMap {
   }
 
   getMap() {
-    this.draw();
+    this.drawMap();
     return this.#map;
   }
 
-  draw() {
+  drawMap() {
     this.drawMapStart();
     this.drawMapMove();
     this.drawMapEnd();
   }
 
-  drawMapStart() {
+  draw(toUpPrint, toDownPrint) {
     this.#map = {
-      upPrint: this.#map.upPrint + MAP.LEFT_BRACKET,
-      downPrint: this.#map.downPrint + MAP.LEFT_BRACKET,
+      upPrint: this.#map.upPrint + toUpPrint,
+      downPrint: this.#map.downPrint + toDownPrint,
     };
   }
 
+  drawMapStart() {
+    this.draw(MAP.LEFT_BRACKET, MAP.LEFT_BRACKET);
+  }
+
   drawMapEnd() {
-    this.#map = {
-      upPrint: this.#map.upPrint + MAP.RIGHT_BRACKET,
-      downPrint: this.#map.downPrint + MAP.RIGHT_BRACKET,
-    };
+    this.draw(MAP.RIGHT_BRACKET, MAP.RIGHT_BRACKET);
   }
 
   drawMapMoveIcon(historyItem) {
     if (historyItem.upOrDown === COMMAND.MOVE.UP) {
-      this.#map = {
-        upPrint: this.#map.upPrint + MAP.MOVE_RESULT_ICON(historyItem.isSuccess),
-        downPrint: this.#map.downPrint + MAP.BLANK,
-      };
+      this.draw(MAP.MOVE_RESULT_ICON(historyItem.isSuccess), MAP.BLANK);
     } else {
-      this.#map = {
-        upPrint: this.#map.upPrint + MAP.BLANK,
-        downPrint: this.#map.downPrint + MAP.MOVE_RESULT_ICON(historyItem.isSuccess),
-      };
+      this.draw(MAP.BLANK, MAP.MOVE_RESULT_ICON(historyItem.isSuccess));
     }
   }
 
   drawMapDivider() {
-    this.#map = {
-      upPrint: this.#map.upPrint + MAP.DIVIDER,
-      downPrint: this.#map.downPrint + MAP.DIVIDER,
-    };
+    this.draw(MAP.DIVIDER, MAP.DIVIDER);
   }
 
   drawMapMove() {
