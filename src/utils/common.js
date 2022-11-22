@@ -1,3 +1,3 @@
 const toString = (intValue) => String(intValue);
-
-module.exports = { toString };
+const toInt = (stringValue) => parseInt(stringValue, 10);
+module.exports = { toString, toInt };
