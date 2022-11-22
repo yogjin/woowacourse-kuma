@@ -4,6 +4,7 @@
 const { Console } = require('@woowacourse/mission-utils');
 const BridgeMaker = require('./BridgeMaker');
 const BridgeRandomNumberGenerator = require('./BridgeRandomNumberGenerator');
+const OutputView = require('./OutputView');
 const { COMMAND, BRIDGE } = require('./utils/constants/game');
 const MESSAGE = require('./utils/constants/message');
 //  제공된 InputView 객체를 활용해 구현해야 한다.
