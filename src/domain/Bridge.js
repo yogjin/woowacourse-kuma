@@ -1,6 +1,6 @@
 const BridgeMaker = require('./BridgeMaker');
 const BridgeRandomNumberGenerator = require('./BridgeRandomNumberGenerator');
-const OutputView = require('./OutputView');
+const OutputView = require('../ui/OutputView');
 
 class Bridge {
   #bridge;

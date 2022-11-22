@@ -1,6 +1,4 @@
-const BridgeGame = require('./BridgeGame');
-const { BridgeGameProcessor } = require('./BridgeGameProcessor');
-const { printMap } = require('./OutputView');
+const { BridgeGameProcessor } = require('./domain/BridgeGameProcessor');
 
 class App {
   constructor() {

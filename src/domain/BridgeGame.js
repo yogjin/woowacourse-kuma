@@ -8,7 +8,7 @@
 //  게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
 // BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
 const Bridge = require('./Bridge');
-const { printResult, printMap } = require('./OutputView');
+const { printResult, printMap } = require('../ui/OutputView');
 
 class BridgeGame {
   #bridge;

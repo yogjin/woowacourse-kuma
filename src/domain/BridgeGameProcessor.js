@@ -1,6 +1,5 @@
-const { printGameStartMessage, printMap, printResult } = require('./OutputView');
-const { readBridgeSize, readMoving, readGameCommand } = require('./InputView');
-const Bridge = require('./Bridge');
+const { printGameStartMessage } = require('../ui/OutputView');
+const { readBridgeSize, readMoving, readGameCommand } = require('../ui/InputView');
 const BridgeGame = require('./BridgeGame');
 
 class BridgeGameProcessor {

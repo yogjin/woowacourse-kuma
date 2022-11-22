@@ -2,13 +2,11 @@
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 const { Console } = require('@woowacourse/mission-utils');
-const BridgeMaker = require('./BridgeMaker');
-const BridgeRandomNumberGenerator = require('./BridgeRandomNumberGenerator');
 const OutputView = require('./OutputView');
-const { toInt } = require('./utils/common');
-const { COMMAND, BRIDGE } = require('./utils/constants/game');
-const MESSAGE = require('./utils/constants/message');
-const { validateRetryCommand, validateMoveCommand, validateBridgeSize } = require('./utils/validation/gameInput');
+const { toInt } = require('../utils/common');
+const { COMMAND } = require('../utils/constants/game');
+const MESSAGE = require('../utils/constants/message');
+const { validateRetryCommand, validateMoveCommand, validateBridgeSize } = require('../utils/validation/gameInput');
 //  제공된 InputView 객체를 활용해 구현해야 한다.
 //  InputView의 파일 경로는 변경할 수 있다.
 //  InputView의 메서드의 인자는 변경할 수 있다.
@@ -23,6 +21,7 @@ const InputView = {
   readBridgeSize(makeBridge, moveProcess) {
     Console.readLine(MESSAGE.INPUT.BRIDGE_LENGTH, (input) => {
       try {
+        validateBridgeSize(toInt(input));
         makeBridge(toInt(input));
         moveProcess();
       } catch (error) {
