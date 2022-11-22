@@ -1,13 +1,14 @@
 const BridgeGame = require('./BridgeGame');
+const { BridgeGameProcessor } = require('./BridgeGameProcessor');
 const { printMap } = require('./OutputView');
 
 class App {
   constructor() {
-    this.bridgeGame = new BridgeGame();
+    this.BridgeGameProcessor = new BridgeGameProcessor();
   }
 
   play() {
-    this.bridgeGame.start();
+    this.BridgeGameProcessor.start();
   }
 }
 

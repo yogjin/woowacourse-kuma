@@ -20,14 +20,14 @@ const InputView = {
    * 다리의 길이를 입력받는다.
    */
   // depth 3 인상태
-  readBridgeSize(bridge, process3) {
+  readBridgeSize(makeBridge, moveProcess) {
     Console.readLine(MESSAGE.INPUT.BRIDGE_LENGTH, (input) => {
       try {
-        bridge.make(toInt(input));
-        process3();
+        makeBridge(toInt(input));
+        moveProcess();
       } catch (error) {
         OutputView.print(error.message);
-        InputView.readBridgeSize(bridge, process3);
+        InputView.readBridgeSize(makeBridge, moveProcess);
       }
     });
   },
@@ -35,15 +35,15 @@ const InputView = {
   /**
    * 사용자가 이동할 칸을 입력받는다.
    */
-  readMoving(move, process4) {
+  readMoving(move, retryOrQuitProcess) {
     Console.readLine(MESSAGE.INPUT.SELECT_DIRECTION, (upOrDown) => {
       try {
         validateMoveCommand(upOrDown);
         move(upOrDown);
-        process4();
+        retryOrQuitProcess();
       } catch (error) {
         OutputView.print(error.message);
-        InputView.readMoving(move, process4);
+        InputView.readMoving(move, retryOrQuitProcess);
       }
     });
   },

@@ -7,9 +7,8 @@
 //  BridgeGame의 메서드의 이름은 변경할 수 없고, 인자는 필요에 따라 추가하거나 변경할 수 있다.
 //  게임 진행을 위해 필요한 메서드를 추가 하거나 변경할 수 있다.
 // BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
-const { printGameStartMessage, printMap, printResult } = require('./OutputView');
-const { readBridgeSize, readMoving, readGameCommand } = require('./InputView');
 const Bridge = require('./Bridge');
+const { printResult, printMap } = require('./OutputView');
 
 class BridgeGame {
   #bridge;
@@ -24,46 +23,11 @@ class BridgeGame {
     this.#tryCount = 1;
   }
 
-  start() {
-    this.gameStartProcess();
-  }
-
-  gameStartProcess() {
-    printGameStartMessage();
-    this.makeBridgeProcess();
-  }
-
-  makeBridgeProcess() {
-    readBridgeSize(this.#bridge, this.moveProcess.bind(this));
-  }
-
-  moveProcess() {
-    readMoving(this.move.bind(this), this.retryOrQuitProcess.bind(this));
-  }
-
-  retryOrQuitProcess() {
-    printMap(this.#history);
-    if (!this.#history[this.#history.length - 1].isSuccess) {
-      // 게임 재시작/종료 여부를 입력 받는다
-      readGameCommand(this.retry.bind(this), this.quit.bind(this));
-    } else if (this.#bridge.isLastPosition(this.#next)) {
-      this.gameTerminateProcess();
-    } else {
-      this.moveProcess();
-    }
-  }
-
-  // 게임 종료
-  gameTerminateProcess() {
-    printResult(this.#history, this.#tryCount);
-  }
-
   /**
    * 사용자가 칸을 이동할 때 사용하는 메서드
    * <p>
    * 이동을 위해 필요한 메서드의 반환 값(return value), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
-
   move(upOrDown) {
     this.#history.push({ position: this.#next, upOrDown, isSuccess: this.#bridge.canCross(upOrDown, this.#next) });
     this.#next += 1;
@@ -78,11 +42,33 @@ class BridgeGame {
     this.#next = 0;
     this.#history = [];
     this.#tryCount += 1;
-    this.moveProcess();
   }
 
-  quit() {
-    this.gameTerminateProcess();
+  printMap() {
+    printMap(this.#history);
+  }
+
+  printResult() {
+    printResult(this.#history, this.#tryCount);
+  }
+
+  makeBridge(size) {
+    this.#bridge.make(size);
+  }
+
+  isClear() {
+    if (this.#bridge.isLastPosition(this.#next)) {
+      return this.#history[this.#next - 1].isSuccess;
+    }
+    return false;
+  }
+
+  isFail() {
+    return !this.#history[this.#history.length - 1].isSuccess;
+  }
+
+  isLastPosition() {
+    return this.#bridge.isLastPosition(this.#next);
   }
 }
 

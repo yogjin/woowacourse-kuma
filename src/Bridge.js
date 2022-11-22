@@ -1,5 +1,6 @@
 const BridgeMaker = require('./BridgeMaker');
 const BridgeRandomNumberGenerator = require('./BridgeRandomNumberGenerator');
+const OutputView = require('./OutputView');
 
 class Bridge {
   #bridge;
@@ -9,8 +10,7 @@ class Bridge {
   }
 
   make(size) {
-    const bridge = BridgeMaker.makeBridge(size, BridgeRandomNumberGenerator.generate);
-    this.#bridge = bridge;
+    this.#bridge = BridgeMaker.makeBridge(size, BridgeRandomNumberGenerator.generate);
   }
 
   isLastPosition(next) {
@@ -19,6 +19,10 @@ class Bridge {
 
   canCross(upOrDown, next) {
     return this.#bridge[next] === upOrDown;
+  }
+
+  print(history) {
+    OutputView.print(history);
   }
 }
 
