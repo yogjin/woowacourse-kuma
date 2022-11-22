@@ -5,9 +5,10 @@ const { Console } = require('@woowacourse/mission-utils');
 const BridgeMaker = require('./BridgeMaker');
 const BridgeRandomNumberGenerator = require('./BridgeRandomNumberGenerator');
 const OutputView = require('./OutputView');
+const { toInt } = require('./utils/common');
 const { COMMAND, BRIDGE } = require('./utils/constants/game');
 const MESSAGE = require('./utils/constants/message');
-const { validateRetryCommand, validateMoveCommand } = require('./utils/validation/gameInput');
+const { validateRetryCommand, validateMoveCommand, validateBridgeSize } = require('./utils/validation/gameInput');
 //  제공된 InputView 객체를 활용해 구현해야 한다.
 //  InputView의 파일 경로는 변경할 수 있다.
 //  InputView의 메서드의 인자는 변경할 수 있다.
@@ -22,12 +23,9 @@ const InputView = {
   readBridgeSize(setBridge, process3) {
     Console.readLine(MESSAGE.INPUT.BRIDGE_LENGTH, (input) => {
       try {
-        const size = parseInt(input, 10);
-        const bridge = BridgeMaker.makeBridge(size, BridgeRandomNumberGenerator.generate);
-
-        if (!(size >= BRIDGE.LENGTH.MIN && size <= BRIDGE.LENGTH.MAX)) {
-          throw new Error(MESSAGE.ERROR.BRIDGE_LENGTH_INPUT_IS_BETWEEN_THREE_AND_TWENTY);
-        }
+        const bridgeSize = toInt(input);
+        const bridge = BridgeMaker.makeBridge(bridgeSize, BridgeRandomNumberGenerator.generate);
+        validateBridgeSize(bridgeSize);
         setBridge(bridge);
         process3();
       } catch (error) {

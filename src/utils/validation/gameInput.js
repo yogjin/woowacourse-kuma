@@ -1,4 +1,4 @@
-const { COMMAND } = require('../constants/game');
+const { COMMAND, BRIDGE } = require('../constants/game');
 const MESSAGE = require('../constants/message');
 
 const validateRetryCommand = (retryOrQuit) => {
@@ -13,4 +13,10 @@ const validateMoveCommand = (upOrDown) => {
   }
 };
 
-module.exports = { validateRetryCommand, validateMoveCommand };
+const validateBridgeSize = (bridgeSize) => {
+  if (!(bridgeSize >= BRIDGE.LENGTH.MIN && bridgeSize <= BRIDGE.LENGTH.MAX)) {
+    throw new Error(MESSAGE.ERROR.BRIDGE_LENGTH_INPUT_IS_BETWEEN_THREE_AND_TWENTY);
+  }
+};
+
+module.exports = { validateRetryCommand, validateMoveCommand, validateBridgeSize };
