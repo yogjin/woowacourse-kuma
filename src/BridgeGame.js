@@ -9,6 +9,7 @@
 // BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
 const { printGameStartMessage, printMap, printResult } = require('./OutputView');
 const { readBridgeSize, readMoving, readGameCommand } = require('./InputView');
+const Bridge = require('./Bridge');
 
 class BridgeGame {
   #bridge;
@@ -17,6 +18,7 @@ class BridgeGame {
   #tryCount;
 
   constructor() {
+    this.#bridge = new Bridge();
     this.#next = 0;
     this.#history = [];
     this.#tryCount = 1;
@@ -28,11 +30,11 @@ class BridgeGame {
 
   gameStartProcess() {
     printGameStartMessage();
-    this.setBridgeProcess();
+    this.makeBridgeProcess();
   }
 
-  setBridgeProcess() {
-    readBridgeSize(this.setBridge.bind(this), this.moveProcess.bind(this));
+  makeBridgeProcess() {
+    readBridgeSize(this.#bridge, this.moveProcess.bind(this));
   }
 
   moveProcess() {
@@ -44,7 +46,7 @@ class BridgeGame {
     if (!this.#history[this.#history.length - 1].isSuccess) {
       // 게임 재시작/종료 여부를 입력 받는다
       readGameCommand(this.retry.bind(this), this.quit.bind(this));
-    } else if (this.#next === this.#bridge.length) {
+    } else if (this.#bridge.isLastPosition(this.#next)) {
       this.gameTerminateProcess();
     } else {
       this.moveProcess();
@@ -63,8 +65,7 @@ class BridgeGame {
    */
 
   move(upOrDown) {
-    const isSuccess = upOrDown === this.#bridge[this.#next];
-    this.#history.push({ position: this.#next, upOrDown, isSuccess });
+    this.#history.push({ position: this.#next, upOrDown, isSuccess: this.#bridge.canCross(upOrDown, this.#next) });
     this.#next += 1;
   }
 
@@ -82,10 +83,6 @@ class BridgeGame {
 
   quit() {
     this.gameTerminateProcess();
-  }
-
-  setBridge(bridge) {
-    this.#bridge = bridge;
   }
 }
 

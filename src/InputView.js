@@ -20,17 +20,14 @@ const InputView = {
    * 다리의 길이를 입력받는다.
    */
   // depth 3 인상태
-  readBridgeSize(setBridge, process3) {
+  readBridgeSize(bridge, process3) {
     Console.readLine(MESSAGE.INPUT.BRIDGE_LENGTH, (input) => {
       try {
-        const bridgeSize = toInt(input);
-        const bridge = BridgeMaker.makeBridge(bridgeSize, BridgeRandomNumberGenerator.generate);
-        validateBridgeSize(bridgeSize);
-        setBridge(bridge);
+        bridge.make(toInt(input));
         process3();
       } catch (error) {
         OutputView.print(error.message);
-        InputView.readBridgeSize(setBridge, process3);
+        InputView.readBridgeSize(bridge, process3);
       }
     });
   },
