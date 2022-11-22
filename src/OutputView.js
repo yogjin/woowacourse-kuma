@@ -10,6 +10,10 @@ const MESSAGE = require('./utils/constants/message');
 //  OutputView의 메서드의 이름은 변경할 수 없고, 인자는 필요에 따라 추가하거나 변경할 수 있다.
 //  값 출력을 위해 필요한 메서드를 추가할 수 있다.
 const OutputView = {
+  print(text) {
+    Console.print(text);
+  },
+
   /**
    * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
    * <p>

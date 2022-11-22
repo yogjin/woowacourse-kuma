@@ -14,6 +14,7 @@ const InputView = {
   /**
    * 다리의 길이를 입력받는다.
    */
+  // depth 3 인상태
   readBridgeSize(setBridge, process3) {
     Console.readLine(MESSAGE.INPUT.BRIDGE_LENGTH, (input) => {
       try {
@@ -26,7 +27,7 @@ const InputView = {
         setBridge(bridge);
         process3();
       } catch (error) {
-        Console.print(error.message);
+        OutputView.print(error.message);
         InputView.readBridgeSize(setBridge, process3);
       }
     });
@@ -42,7 +43,7 @@ const InputView = {
         move(upOrDown);
         process4();
       } catch (error) {
-        Console.print(error.message);
+        OutputView.print(error.message);
         InputView.readMoving(move, process4);
       }
     });
@@ -61,7 +62,7 @@ const InputView = {
           quit();
         }
       } catch (error) {
-        Console.print(error.message);
+        OutputView.print(error.message);
         InputView.readGameCommand(retry, quit);
       }
     });
