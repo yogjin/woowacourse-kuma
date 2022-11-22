@@ -1,5 +1,5 @@
 const MissionUtils = require('@woowacourse/mission-utils');
-const Bridge = require('../src/domain/Bridge');
+const Bridge = require('../../src/domain/Bridge');
 
 const mockRandoms = (numbers) => {
   MissionUtils.Random.pickNumberInRange = jest.fn();
