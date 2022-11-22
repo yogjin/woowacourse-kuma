@@ -16,28 +16,69 @@ const OutputView = {
    * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
   printMap(history) {
-    // { position: this.#next, upOrDown, isSuccess }
-    let upPrint = MAP.LEFT_BRACKET;
-    let downPrint = MAP.LEFT_BRACKET;
-    history.forEach((item) => {
-      if (item.position > 0) {
-        upPrint += MAP.DIVIDER;
-        downPrint += MAP.DIVIDER;
-      }
-      const isSuccess = item.isSuccess;
-      if (item.upOrDown === COMMAND.MOVE.UP) {
-        upPrint += MAP.MOVE_RESULT_ICON(isSuccess);
-        downPrint += MAP.BLANK;
-      } else {
-        upPrint += MAP.BLANK;
-        downPrint += MAP.MOVE_RESULT_ICON(isSuccess);
-      }
-    });
-    upPrint += MAP.RIGHT_BRACKET;
-    downPrint += MAP.RIGHT_BRACKET;
+    const mapPrint = OutputView.drawMap(history);
+    Console.print(mapPrint.upPrint);
+    Console.print(mapPrint.downPrint);
+  },
 
-    Console.print(upPrint);
-    Console.print(downPrint);
+  drawMap(history) {
+    let mapPrint = {
+      upPrint: '',
+      downPrint: '',
+    };
+    mapPrint = OutputView.drawMapStart(mapPrint);
+    mapPrint = OutputView.drawMapMove(mapPrint, history);
+    mapPrint = OutputView.drawMapEnd(mapPrint);
+
+    return mapPrint;
+  },
+
+  drawMapStart(mapPrint) {
+    return {
+      upPrint: mapPrint.upPrint + MAP.LEFT_BRACKET,
+      downPrint: mapPrint.downPrint + MAP.LEFT_BRACKET,
+    };
+  },
+
+  drawMapEnd(mapPrint) {
+    return {
+      upPrint: mapPrint.upPrint + MAP.RIGHT_BRACKET,
+      downPrint: mapPrint.downPrint + MAP.RIGHT_BRACKET,
+    };
+  },
+
+  drawMapMove(mapPrint, history) {
+    let updatedMapPrint = mapPrint;
+    history.forEach((item) => {
+      if (!OutputView.isFirstPosition(item)) updatedMapPrint = OutputView.drawMapDivider(updatedMapPrint);
+      updatedMapPrint = OutputView.drawMapMoveIcon(updatedMapPrint, item);
+    });
+
+    return updatedMapPrint;
+  },
+
+  drawMapDivider(mapPrint) {
+    return {
+      upPrint: mapPrint.upPrint + MAP.DIVIDER,
+      downPrint: mapPrint.downPrint + MAP.DIVIDER,
+    };
+  },
+
+  isFirstPosition(historyItem) {
+    return !(historyItem.position > 0);
+  },
+
+  drawMapMoveIcon(mapPrint, historyItem) {
+    if (historyItem.upOrDown === COMMAND.MOVE.UP) {
+      return {
+        upPrint: mapPrint.upPrint + MAP.MOVE_RESULT_ICON(historyItem.isSuccess),
+        downPrint: mapPrint.downPrint + MAP.BLANK,
+      };
+    }
+    return {
+      upPrint: mapPrint.upPrint + MAP.BLANK,
+      downPrint: mapPrint.downPrint + MAP.MOVE_RESULT_ICON(historyItem.isSuccess),
+    };
   },
 
   /**
