@@ -17,6 +17,7 @@ module.exports = {
     'max-params': ['error', 3], // 메서드의 파라미터 개수는 최대 3개까지만 허용한다.
     'prefer-destructuring': 'off',
     'no-unused-expressions': 'off',
+    'lines-between-class-members': 'off',
   },
   parserOptions: {
     ecmaVersion: 13,
