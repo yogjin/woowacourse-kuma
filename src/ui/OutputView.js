@@ -2,7 +2,7 @@
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 const { Console } = require('@woowacourse/mission-utils');
-const { BridgeMap } = require('../domain/BridgeMapDrawer');
+const { BridgeMap } = require('../domain/BridgeMap');
 const MESSAGE = require('../utils/constants/message');
 
 //  제공된 OutputView 객체를 활용해 구현해야 한다.
