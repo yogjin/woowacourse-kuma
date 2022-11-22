@@ -23,36 +23,36 @@ class BridgeGame {
   }
 
   start() {
-    this.process1();
+    this.gameStartProcess();
   }
 
-  process1() {
+  gameStartProcess() {
     printGameStartMessage();
-    this.process2();
+    this.setBridgeProcess();
   }
 
-  process2() {
-    readBridgeSize(this.setBridge.bind(this), this.process3.bind(this));
+  setBridgeProcess() {
+    readBridgeSize(this.setBridge.bind(this), this.moveProcess.bind(this));
   }
 
-  process3() {
-    readMoving(this.move.bind(this), this.process4.bind(this));
+  moveProcess() {
+    readMoving(this.move.bind(this), this.retryOrQuitProcess.bind(this));
   }
 
-  process4() {
+  retryOrQuitProcess() {
     printMap(this.#history);
     if (!this.#history[this.#history.length - 1].isSuccess) {
       // 게임 재시작/종료 여부를 입력 받는다
       readGameCommand(this.retry.bind(this), this.quit.bind(this));
     } else if (this.#next === this.#bridge.length) {
-      this.process5();
+      this.gameTerminateProcess();
     } else {
-      this.process3();
+      this.moveProcess();
     }
   }
 
   // 게임 종료
-  process5() {
+  gameTerminateProcess() {
     printResult(this.#history, this.#tryCount);
   }
 
@@ -77,11 +77,11 @@ class BridgeGame {
     this.#next = 0;
     this.#history = [];
     this.#tryCount += 1;
-    this.process3();
+    this.moveProcess();
   }
 
   quit() {
-    this.process5();
+    this.gameTerminateProcess();
   }
 
   setBridge(bridge) {
