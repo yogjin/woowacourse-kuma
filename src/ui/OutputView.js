@@ -14,6 +14,14 @@ const OutputView = {
     Console.print(text);
   },
 
+  printBlank() {
+    Console.print('');
+  },
+
+  close() {
+    Console.close();
+  },
+
   /**
    * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
    * <p>
@@ -21,8 +29,9 @@ const OutputView = {
    */
   printMap(history) {
     const mapPrint = OutputView.drawMap(history);
-    Console.print(mapPrint.upPrint);
-    Console.print(mapPrint.downPrint);
+    OutputView.print(mapPrint.upPrint);
+    OutputView.print(mapPrint.downPrint);
+    OutputView.printBlank();
   },
 
   drawMap(history) {
@@ -98,19 +107,21 @@ const OutputView = {
   },
 
   printGameStartMessage() {
-    Console.print(MESSAGE.OUTPUT.GAME_START);
+    OutputView.print(MESSAGE.OUTPUT.GAME_START);
+    OutputView.printBlank();
   },
 
   printFinalGameResult() {
-    Console.print(MESSAGE.OUTPUT.FINAL_GAME_RESULT);
+    OutputView.print(MESSAGE.OUTPUT.FINAL_GAME_RESULT);
   },
 
   printGameSuccessOrNot(history) {
-    Console.print(MESSAGE.OUTPUT.GAME_SUCCESS_OR_NOT(OutputView.getIsSuccess(history)));
+    OutputView.print(MESSAGE.OUTPUT.GAME_SUCCESS_OR_NOT(OutputView.getIsSuccess(history)));
   },
 
   printAttemptsNumber(tryCount) {
-    Console.print(MESSAGE.OUTPUT.ATTEMPTS_NUMBER(tryCount));
+    OutputView.print(MESSAGE.OUTPUT.ATTEMPTS_NUMBER(tryCount));
+    OutputView.close();
   },
 
   getIsSuccess(history) {

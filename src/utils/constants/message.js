@@ -2,9 +2,9 @@ const { COMMAND, BRIDGE } = require('./game');
 
 const MESSAGE = Object.freeze({
   INPUT: {
-    BRIDGE_LENGTH: '다리의 길이를 입력해주세요.',
-    SELECT_DIRECTION: `이동할 칸을 선택해주세요. (위: ${COMMAND.MOVE.UP}, 아래: ${COMMAND.MOVE.DOWN})`,
-    RETRY_OR_QUIT: `게임을 다시 시도할지 여부를 입력해주세요. (재시도: ${COMMAND.RETRY}, 종료: ${COMMAND.QUIT})`,
+    BRIDGE_LENGTH: '다리의 길이를 입력해주세요.\n',
+    SELECT_DIRECTION: `이동할 칸을 선택해주세요. (위: ${COMMAND.MOVE.UP}, 아래: ${COMMAND.MOVE.DOWN})\n`,
+    RETRY_OR_QUIT: `게임을 다시 시도할지 여부를 입력해주세요. (재시도: ${COMMAND.RETRY}, 종료: ${COMMAND.QUIT})\n`,
   },
 
   OUTPUT: {
