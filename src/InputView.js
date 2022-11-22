@@ -7,7 +7,7 @@ const BridgeRandomNumberGenerator = require('./BridgeRandomNumberGenerator');
 const OutputView = require('./OutputView');
 const { COMMAND, BRIDGE } = require('./utils/constants/game');
 const MESSAGE = require('./utils/constants/message');
-const { validateRetryCommand } = require('./utils/validation/gameInput');
+const { validateRetryCommand, validateMoveCommand } = require('./utils/validation/gameInput');
 //  제공된 InputView 객체를 활용해 구현해야 한다.
 //  InputView의 파일 경로는 변경할 수 있다.
 //  InputView의 메서드의 인자는 변경할 수 있다.
@@ -43,7 +43,7 @@ const InputView = {
   readMoving(move, process4) {
     Console.readLine(MESSAGE.INPUT.SELECT_DIRECTION, (upOrDown) => {
       try {
-        if (![COMMAND.MOVE.UP, COMMAND.MOVE.DOWN].includes(upOrDown)) throw new Error(MESSAGE.ERROR.MOVING_DIRECTION_INPUT_IS_U_OR_D);
+        validateMoveCommand(upOrDown);
         move(upOrDown);
         process4();
       } catch (error) {

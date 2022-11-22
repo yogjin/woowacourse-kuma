@@ -7,4 +7,10 @@ const validateRetryCommand = (retryOrQuit) => {
   }
 };
 
-module.exports = { validateRetryCommand };
+const validateMoveCommand = (upOrDown) => {
+  if (![COMMAND.MOVE.UP, COMMAND.MOVE.DOWN].includes(upOrDown)) {
+    throw new Error(MESSAGE.ERROR.MOVING_DIRECTION_INPUT_IS_U_OR_D);
+  }
+};
+
+module.exports = { validateRetryCommand, validateMoveCommand };
