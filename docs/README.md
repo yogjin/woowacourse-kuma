@@ -40,7 +40,7 @@
 
 ## 클래스(객체)간 구조와 역할
 
-<center><img src="https://user-images.githubusercontent.com/33623078/203341837-cf25c396-bb55-4bfd-b5fe-03ad0379fa2b.png" width="600" height="700"></center>
+<center><img src="https://user-images.githubusercontent.com/33623078/203710857-4227d480-c747-4842-8197-e6d87923f3d2.png" width="600" height="700"></center>
  
 클래스는 구현내용에 따라 **도메인 로직**, **UI 로직**으로 나눌 수 있다.
 
