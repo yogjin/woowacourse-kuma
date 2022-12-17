@@ -21,4 +21,11 @@ const isValidCoachInputs = (coachs) => {
   return true;
 };
 
-module.exports = { isValidCoachInputs };
+const isValidUnlikeMenus = (unlikeMenus) => {
+  if (!(unlikeMenus.length >= 0 && unlikeMenus.length <= 2)) {
+    return handleError('[ERROR] 못 먹는 메뉴의 개수는 최소 0개, 최대 2개 사이여야 합니다.');
+  }
+  return true;
+};
+
+module.exports = { isValidCoachInputs, isValidUnlikeMenus };

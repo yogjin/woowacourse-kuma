@@ -1,6 +1,6 @@
 const { readCoachNames, readUnlikeMenu } = require('../ui/InputView');
 const { printStartMenuRecommadationMessage, printMenuRecommendationResult } = require('../ui/OutputView');
-const { isValidCoachInputs } = require('../utils/validation/input');
+const { isValidCoachInputs, isValidUnlikeMenus } = require('../utils/validation/input');
 
 class MenuProcessor {
   #menu;
@@ -35,7 +35,9 @@ class MenuProcessor {
 
   // 못 먹는 메뉴 입력받기
   #setUnlikeMenu(input) {
-    this.#unlikeMenu[this.#coachs[this.#coachIndex]] = input.split(',').map((name) => name.trim());
+    const unlikeMenus = input.split(',').map((name) => name.trim());
+    if (!isValidUnlikeMenus(unlikeMenus)) return this.#setUnlikeMenuProcess(this.#coachIndex);
+    this.#unlikeMenu[this.#coachs[this.#coachIndex]] = unlikeMenus;
     this.#coachIndex += 1;
     if (this.#coachIndex === this.#coachs.length) {
       return this.#showMenuRecommendationResultProcess();
