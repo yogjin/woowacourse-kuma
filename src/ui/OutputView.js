@@ -16,6 +16,10 @@ const OutputView = {
   printStartMenuRecommadationMessage() {
     print(`점심 메뉴 추천을 시작합니다.`);
   },
+
+  printMenuRecommendationResult() {
+    print(`메뉴 추천 결과입니다.`);
+  },
 };
 
 module.exports = OutputView;

@@ -1,5 +1,5 @@
 const { readCoachNames, readUnlikeMenu } = require('../ui/InputView');
-const { printStartMenuRecommadationMessage } = require('../ui/OutputView');
+const { printStartMenuRecommadationMessage, printMenuRecommendationResult } = require('../ui/OutputView');
 
 class MenuProcessor {
   #coachs = [];
@@ -29,11 +29,17 @@ class MenuProcessor {
   #setUnlikeMenu(input) {
     this.#unlikeMenu[this.#coachs[this.#coachIndex]] = input.split(',').map((name) => name.trim());
     this.#coachIndex += 1;
+    if (this.#coachIndex === this.#coachs.length) return this.#showMenuRecommendationResultProcess();
     this.#setUnlikeMenuProcess(this.#coachIndex);
   }
 
   #setUnlikeMenuProcess(coachIndex) {
     readUnlikeMenu(this.#coachs[coachIndex], this.#setUnlikeMenu.bind(this));
+  }
+
+  // 메뉴 추천 결과 출력하기
+  #showMenuRecommendationResultProcess() {
+    printMenuRecommendationResult();
   }
 }
 
