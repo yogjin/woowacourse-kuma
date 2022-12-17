@@ -1,4 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
+const MESSAGE = require('../utils/constants/message');
 
 const print = (text) => {
   Console.print(text);
@@ -13,12 +14,12 @@ const closeConsole = () => {
 };
 
 const printCategories = (categories) => {
-  print(`[ 카테고리 | ${categories[0]} | ${categories[1]} | ${categories[2]} | ${categories[3]} | ${categories[4]} ]`);
+  print(MESSAGE.OUTPUT.RECOMMENDATION_TABLE.CATEGORIES(categories));
 };
 
 const printRecommendations = (recommendationResult) => {
   for (const [coach, menus] of Object.entries(recommendationResult)) {
-    print(`[ ${coach} | ${menus[0]} | ${menus[1]} | ${menus[2]} | ${menus[3]} | ${menus[4]} ]`);
+    print(MESSAGE.OUTPUT.RECOMMENDATION_TABLE.MENUS(coach, menus));
   }
 };
 
@@ -28,19 +29,19 @@ const OutputView = {
   },
 
   printStartMenuRecommadationMessage() {
-    print(`점심 메뉴 추천을 시작합니다.`);
+    print(MESSAGE.OUTPUT.PROGRAM_START);
     printBlank();
   },
 
   printMenuRecommendationResult(categories, recommendationResult) {
     printBlank();
-    print(`메뉴 추천 결과입니다.`);
+    print(MESSAGE.OUTPUT.RECOMMENDATION_RESULT);
     printBlank();
-    print('[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]');
+    print(MESSAGE.OUTPUT.RECOMMENDATION_TABLE.DAYS);
     printCategories(categories);
     printRecommendations(recommendationResult);
     printBlank();
-    print(`추천을 완료했습니다.`);
+    print(MESSAGE.OUTPUT.RECOMMENDATION_COMPLETE);
     closeConsole();
   },
 };
