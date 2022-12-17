@@ -1,5 +1,6 @@
 const { readCoachNames, readUnlikeMenu } = require('../ui/InputView');
 const { printStartMenuRecommadationMessage, printMenuRecommendationResult } = require('../ui/OutputView');
+const { isValidCoachNames } = require('../utils/validation/input');
 
 class MenuProcessor {
   #menu;
@@ -24,6 +25,7 @@ class MenuProcessor {
   // 코치 이름 받기
   #setCoachNames(input) {
     this.#coachs = input.split(',').map((name) => name.trim());
+    if (!isValidCoachNames(this.#coachs)) return this.#setCoachNamesProcess();
     this.#setUnlikeMenuProcess(this.#coachIndex);
   }
 
