@@ -30,10 +30,10 @@ class Menu {
 
   #recommendMenu(category) {
     const indexes = [];
-    for (let i = 0; i < this.#getMenus(category).length; i += 1) {
+    for (let i = 1; i < this.#getMenus(category).length; i += 1) {
       indexes.push(i);
     }
-    return this.#getMenus(category)[Random.shuffle(indexes)[0]];
+    return this.#getMenus(category)[Random.shuffle(indexes)[0] - 1];
   }
 
   // { '포비': [ '우동', '스시' ], '제임스': [ '초코', '가츠동' ] }
