@@ -2,9 +2,14 @@ const { readCoachNames, readUnlikeMenu } = require('../ui/InputView');
 const { printStartMenuRecommadationMessage, printMenuRecommendationResult } = require('../ui/OutputView');
 
 class MenuProcessor {
+  #menu;
   #coachs = [];
   #coachIndex = 0;
   #unlikeMenu = {};
+
+  constructor(menu) {
+    this.#menu = menu;
+  }
 
   start() {
     this.#startProcess();
@@ -39,7 +44,10 @@ class MenuProcessor {
 
   // 메뉴 추천 결과 출력하기
   #showMenuRecommendationResultProcess() {
+    console.log(this.#unlikeMenu);
     printMenuRecommendationResult();
+
+    // #menu.recommendFood()
   }
 }
 
