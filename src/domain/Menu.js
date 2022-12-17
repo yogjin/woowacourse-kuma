@@ -43,7 +43,7 @@ class Menu {
     const menus = []; // 월 화 수 목 금
     this.#categories.forEach((category) => {
       let menu = this.#recommendMenu(category);
-      while (!unlikeMenus.includes(menu) && menus.includes(menu)) {
+      while (unlikeMenus.includes(menu) || menus.includes(menu)) {
         menu = this.#recommendMenu(category);
       }
       menus.push(menu);
