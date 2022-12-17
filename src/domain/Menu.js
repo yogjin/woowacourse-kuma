@@ -15,24 +15,42 @@ class Menu {
   }
 
   #setCategories() {
-    let category = this.#getCategory(Random.pickNumberInRange(1, 5));
-    while (!isDuplicatedThird(category)) category = this.#getCategory(Random.pickNumberInRange(1, 5));
-    this.#categories.push(category);
+    while (this.#categories.length < 5) {
+      let category = this.#getCategory(Random.pickNumberInRange(1, 5));
+      while (isDuplicatedThird(this.#categories, category)) {
+        category = this.#getCategory(Random.pickNumberInRange(1, 5));
+      }
+      this.#categories.push(category);
+    }
   }
 
   #getMenus(category) {
     return this.#foodList[category].split(',').map((food) => food.trim());
   }
 
-  recommendFood(unlikeMenus) {
-    this.#setCategories();
-    const menu = Random.shuffle(this.#getMenus(category))[0];
-    if (unlikeMenus.includes(menu)) return this.recommendFood(unlikeMenus);
-    return menu;
+  #shuffleMenus(menus) {}
+
+  #recommendMenu(category) {
+    const indexes = [];
+    for (let i = 0; i < this.#getMenus(category).length; i += 1) {
+      indexes.push(i);
+    }
+    return this.#getMenus(category)[Random.shuffle(indexes)[0]];
   }
+
   // { '포비': [ '우동', '스시' ], '제임스': [ '초코', '가츠동' ] }
-  recommendFoods(unlikeMenus) {
-    unlikeMenus.forEach((coach, menus) => {});
+  // eslint-disable-next-line max-lines-per-function
+  recommendMenus(unlikeMenus) {
+    this.#setCategories();
+    const menus = []; // 월 화 수 목 금
+    this.#categories.forEach((category) => {
+      let menu = this.#recommendMenu(category);
+      while (!unlikeMenus.includes(menu) && menus.includes(menu)) {
+        menu = this.recommendFood(unlikeMenus);
+      }
+      menus.push(menu);
+    });
+    return menus;
   }
 }
 

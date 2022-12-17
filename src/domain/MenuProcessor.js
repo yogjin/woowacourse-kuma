@@ -34,7 +34,9 @@ class MenuProcessor {
   #setUnlikeMenu(input) {
     this.#unlikeMenu[this.#coachs[this.#coachIndex]] = input.split(',').map((name) => name.trim());
     this.#coachIndex += 1;
-    if (this.#coachIndex === this.#coachs.length) return this.#showMenuRecommendationResultProcess();
+    if (this.#coachIndex === this.#coachs.length) {
+      return this.#showMenuRecommendationResultProcess();
+    }
     this.#setUnlikeMenuProcess(this.#coachIndex);
   }
 
@@ -45,6 +47,7 @@ class MenuProcessor {
   // 메뉴 추천 결과 출력하기
   #showMenuRecommendationResultProcess() {
     console.log(this.#unlikeMenu);
+    console.log(this.#menu.recommendMenus(this.#unlikeMenu['포비']));
     printMenuRecommendationResult();
 
     // #menu.recommendFood()
