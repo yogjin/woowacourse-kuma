@@ -11,11 +11,14 @@ const handleError = (errorMessage) => {
 
 const isValidCoachName = (name) => name.length >= 2 && name.length <= 4;
 
-const isValidCoachNames = (coachs) => {
+const isValidCoachInputs = (coachs) => {
   if (!coachs.every((coach) => isValidCoachName(coach))) {
     return handleError('[ERROR] 코치의 이름은 최소 2글자, 최대 4글자이어야 합니다.');
+  }
+  if (!(coachs.length >= 2 && coachs.length <= 5)) {
+    return handleError('[ERROR] 코치의 인원이 최소 2명, 최대 5명 사이여야 합니다.');
   }
   return true;
 };
 
-module.exports = { isValidCoachNames };
+module.exports = { isValidCoachInputs };
