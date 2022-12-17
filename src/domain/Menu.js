@@ -28,8 +28,6 @@ class Menu {
     return this.#foodList[category].split(',').map((food) => food.trim());
   }
 
-  #shuffleMenus(menus) {}
-
   #recommendMenu(category) {
     const indexes = [];
     for (let i = 0; i < this.#getMenus(category).length; i += 1) {
@@ -46,11 +44,15 @@ class Menu {
     this.#categories.forEach((category) => {
       let menu = this.#recommendMenu(category);
       while (!unlikeMenus.includes(menu) && menus.includes(menu)) {
-        menu = this.recommendFood(unlikeMenus);
+        menu = this.#recommendMenu(category);
       }
       menus.push(menu);
     });
     return menus;
+  }
+
+  getCategories() {
+    return this.#categories;
   }
 }
 

@@ -6,6 +6,7 @@ class MenuProcessor {
   #coachs = [];
   #coachIndex = 0;
   #unlikeMenu = {};
+  #recommendationResult = {};
 
   constructor(menu) {
     this.#menu = menu;
@@ -46,11 +47,10 @@ class MenuProcessor {
 
   // 메뉴 추천 결과 출력하기
   #showMenuRecommendationResultProcess() {
-    console.log(this.#unlikeMenu);
-    console.log(this.#menu.recommendMenus(this.#unlikeMenu['포비']));
-    printMenuRecommendationResult();
-
-    // #menu.recommendFood()
+    for (const [coach, unlikeMenus] of Object.entries(this.#unlikeMenu)) {
+      this.#recommendationResult[coach] = this.#menu.recommendMenus(unlikeMenus);
+    }
+    printMenuRecommendationResult(this.#menu.getCategories(), this.#recommendationResult);
   }
 }
 
